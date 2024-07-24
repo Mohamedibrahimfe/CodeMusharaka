@@ -1,3 +1,51 @@
-*{
-    background-color: brown;
+
+.navLink:hover {
+    transform : scale(1.2);
+}
+.navLink {
+    transition : all 200ms linear;
+    padding:8px;
+    width:72px;
+    height:72px;
+    border-radius: 8px;
+    border : 1px solid #c1d9ee;
+    background: linear-gradient(225deg, #d3eeff, #b1c8e0);
+    box-shadow:  -5px 5px 16px #a5bad1,
+                5px -5px 16px #ddedff;
+    backdrop-filter: blur(1rem);
+}
+.navLink i {
+    font-size:2em
+}
+@media screen and (max-width:425px){
+    .navLink i {
+        font-size:1.5em
+    }
+    .navLink {
+        width:48px;
+        height:48px;
+        line-height: 32px;
+    }
+    .navLabel {
+    display:none;
+    }
+}
+.navLink a {
+    text-decoration: none;
+    color : #204063
+}
+.smallContainer {
+    max-width:720px;
+    margin:0px auto;
+    background: #c1d9ee;
+    backdrop-filter: blur(1rem);
+}
+.navLabel {
+    font-size:12px
+}
+.navLinkActive *{
+    color:#fff !important;
+}
+.navLinkActive {
+    background:#3d5f80
 }
