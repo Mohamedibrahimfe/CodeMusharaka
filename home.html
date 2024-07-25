@@ -11,39 +11,59 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-    <div class="container">
-        <div class="position-fixed text-uppercase mb-2 p-4 start-0 text-center top-0 w-100" role="navigation">
-            <div class="smallContainer p-3 shadow-lg rounded">
-                <div class="d-flex align-items-center justify-content-around">
-                    <div class="navLink navLinkActive">
-                        <a href="#">
-                            <div><i class="fa-solid fa-house"></i></div>
-                            <div class="navLabel">Home</div>
-                        </a>
-                    </div>
-                    <div class="navLink">
-                        <a href="#">
-                            <div><i class="fa-brands fa-app-store-ios"></i></div>
-                            <div class="navLabel">App</div>
-                        </a>
-                    </div>
-                    <div class="navLink">
-                        <a href="#">
-                            <div><i class="fa-solid fa-comment"></i></div>
-                            <div class="navLabel">Message</div>
-                        </a>
-                    </div>
-                    <div class="navLink">
-                        <a href="#">
-                            <div><i class="fa-solid fa-circle-user"></i></div>
-                            <div class="navLabel">Account</div>
-                        </a>
+<body class="bg-dark">
+    <div class="vh-100 d-flex align-items-center position-fixed start-0 top-0" role="navigation">
+        <div class="p-2">
+            <div id="mainNav">
+                <ul class="list-unstyled rounded ms-2">
+                    <li>
+                        <a class="vlink rounded border-0" href="#"><i class="fas fa-home"></i><span>Home</span></a>
+                    </li>
+                    <li>
+                        <a class="vlink rounded" href="#"><i
+                                class="fa-regular fa-circle-user"></i><span>Profile</span></a>
+                    </li>
+                    <li>
+                        <a class="vlink rounded" href="#"><i class="fas fa-newspaper"></i><span>News</span></a>
+                    </li>
+                    <li>
+                        <a class="vlink rounded" href="#"><i class="fas fa-photo-video"></i><span>Gallery</span></a>
+                    </li>
+                    <li>
+                        <a class="vlink rounded" href="#"><i
+                                class="fa-regular fa-circle-user"></i><span>Profile</span></a>
+                        <!-- <button class="vlink rounded" href="#">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Login</span>
+                        </button> -->
+                        <!-- <br> -->
+                        <!-- <button class="vlink rounded" href="#">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Register</span>
+                        </button> -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container mt-5 d-flex justify-content-center" style="height:100vh">
+            <div id="posts">
+                <div id="post">
+                    <div class="card" style="width: 50rem;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
 </body>
 
