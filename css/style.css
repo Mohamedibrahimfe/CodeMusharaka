@@ -65,3 +65,7 @@ a.vlink {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
     box-shadow :-6px 12px 5px 2px rgba(145,145,145,0.5)
   }
+  .time{
+    margin-left: -65px;
+    margin-top: 35px;
+  }
