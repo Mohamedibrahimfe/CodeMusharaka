@@ -1,1 +1,0 @@
-baseUrl="https://tarmeezacademy.com/api/v1"
