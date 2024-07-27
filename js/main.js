@@ -1,16 +1,15 @@
 var requestOptions = {
-    method: 'GET',
-    redirect: 'follow'
+  method: "GET",
+  redirect: "follow",
 };
 
-    fetch("https://tarmeezacademy.com/api/v1/posts?limit=5", requestOptions)
-        .then(response => response.json())
-        .then(function (response) {
-            let posts = response.data
-            console.log(posts)
-            document.getElementById('posts').innerHTML = ""
-            posts.map(function (post) {
-                let postBox = `
+fetch(`${baseUrl}/posts?limit=2`, requestOptions)
+  .then((response) => response.json())
+  .then(function (response) {
+    let posts = response.data;
+    document.getElementById("posts").innerHTML = "";
+    posts.map(function (post) {
+      let postBox = `
             <div class="mt-4 pb-2" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
@@ -39,8 +38,38 @@ var requestOptions = {
                         </div>
                     </div>
                 </div>
-                `
-                document.getElementById('posts').innerHTML += postBox
-            })
-        })
-        .catch(error => console.log('error', error));
+                `;
+      document.getElementById("posts").innerHTML += postBox;
+    });
+  })
+  .catch((error) => console.log("error", error));
+
+function authentication() {
+  body = {
+    username: document.getElementById("username").value,
+    password: document.getElementById("password").value,
+  };
+
+  fetch(`${baseUrl}/register`);
+}
+
+function Login() {
+  body = {
+    username: document.getElementById("login-name").value,
+    password: document.getElementById("password-input-login").value,
+  };
+  fetch(`${baseUrl}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  })
+    .then((response) => response.json())
+    .then(function (response) {
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("user_id", response.user.id);
+      alert("Login successful");
+    })
+    .catch((error) => console.log("error", error));
+}
