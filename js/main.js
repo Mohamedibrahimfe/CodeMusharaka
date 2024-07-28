@@ -69,7 +69,7 @@ function Login() {
     .then(function (response) {
       localStorage.setItem("token", response.token);
       localStorage.setItem("user-data", JSON.stringify(response.user));
-
+      showSuccessMessage();
       const loginModal = document.getElementById("Login");
       const modalInstance = bootstrap.Modal.getInstance(loginModal);
       modalInstance.hide();
@@ -78,23 +78,5 @@ function Login() {
 }
 
 function showSuccessMessage() {
-  const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
-  const appendAlert = (message, type) => {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = [
-      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-      `   <div>${message}</div>`,
-      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-      "</div>",
-    ].join("");
-
-    alertPlaceholder.append(wrapper);
-  };
-
-  const alertTrigger = document.getElementById("liveAlertBtn");
-  if (alertTrigger) {
-    alertTrigger.addEventListener("click", () => {
-      appendAlert("Nice, you triggered this alert message!", "success");
-    });
-  }
+  customAlert("You are logged in."); //alert box on load
 }
