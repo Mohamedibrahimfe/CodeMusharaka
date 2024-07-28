@@ -70,6 +70,7 @@ function Login() {
       localStorage.setItem("token", response.token);
       localStorage.setItem("user_id", response.user.id);
       alert("Login successful");
+      window.location.href = "home.html";
     })
     .catch((error) => console.log("error", error));
 }
