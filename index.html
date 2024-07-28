@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="assets/all.min.css">
     <link rel="stylesheet" href="assets/normalize.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/toastr/build/toastr.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="vh-100 d-flex align-items-center position-fixed start-0 top-0" role="navigation">
+    <div class="vh-100 d-flex align-items-center position-fixed start-0 top-0 z-3" role="navigation">
         <div class="p-2">
             <div id="mainNav">
                 <ul class="list-unstyled rounded ms-2">
@@ -27,12 +28,13 @@
                         <a class="vlink rounded" href="#"><i class="fas fa-newspaper"></i><span>News</span></a>
                     </li>
                     <li>
-                        <a class="vlink rounded" href="#"><i class="fa-solid fa-user-plus"></i>
+                        <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Login" href="#"><i class="fa-solid fa-user-plus"></i>
                             <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#Login">Login</span>
                         </a>
                     </li>
                     <li>
-                        <a class="vlink rounded " href="#"><i class="fa-solid fa-right-to-bracket"></i>
+                        <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Register" href="#"><i
+                                class="fa-solid fa-right-to-bracket"></i>
                             <span class="cursor-pointer" data-bs-toggle="modal"
                                 data-bs-target="#Register">Register</span>
                         </a>
@@ -55,12 +57,9 @@
 
 
 
-
-
-
-
-
-
+<!-- alerts -->
+<div id="liveAlertPlaceholder"></div>
+<button type="button" class="btn btn-primary" id="liveAlertBtn">Show live alert</button>
 
 
     <!-- modal -->

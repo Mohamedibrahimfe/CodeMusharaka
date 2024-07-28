@@ -68,9 +68,33 @@ function Login() {
     .then((response) => response.json())
     .then(function (response) {
       localStorage.setItem("token", response.token);
-      localStorage.setItem("user_id", response.user.id);
-      alert("Login successful");
-      window.location.href = "home.html";
+      localStorage.setItem("user-data", JSON.stringify(response.user));
+
+      const loginModal = document.getElementById("Login");
+      const modalInstance = bootstrap.Modal.getInstance(loginModal);
+      modalInstance.hide();
     })
     .catch((error) => console.log("error", error));
+}
+
+function showSuccessMessage() {
+  const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+  const appendAlert = (message, type) => {
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      "</div>",
+    ].join("");
+
+    alertPlaceholder.append(wrapper);
+  };
+
+  const alertTrigger = document.getElementById("liveAlertBtn");
+  if (alertTrigger) {
+    alertTrigger.addEventListener("click", () => {
+      appendAlert("Nice, you triggered this alert message!", "success");
+    });
+  }
 }
