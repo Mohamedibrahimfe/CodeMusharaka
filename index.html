@@ -16,7 +16,7 @@
     <div class="vh-100 d-flex align-items-center position-fixed start-0 top-0 z-3" role="navigation">
         <div class="p-2">
             <div id="mainNav">
-                <ul class="list-unstyled rounded ms-2">
+                <ul id="list" class="list-unstyled rounded ms-2">
                     <li>
                         <a class="vlink rounded border-0" href="#"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
@@ -27,12 +27,12 @@
                     <li>
                         <a class="vlink rounded" href="#"><i class="fas fa-newspaper"></i><span>News</span></a>
                     </li>
-                    <li>
+                    <li id="login-form">
                         <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Login" href="#"><i class="fa-solid fa-user-plus"></i>
                             <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#Login">Login</span>
                         </a>
                     </li>
-                    <li>
+                    <li id="Register-form">
                         <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Register" href="#"><i
                                 class="fa-solid fa-right-to-bracket"></i>
                             <span class="cursor-pointer" data-bs-toggle="modal"
@@ -55,6 +55,8 @@
         </div>
     </section>
 
+<!-- create post -->
+<div id="create-post" onclick="createPost()" class="create-post d-none"><i class="fa-solid fa-circle-plus"></i></div>
 
 
 <!-- alerts -->

@@ -73,10 +73,54 @@ function Login() {
       const loginModal = document.getElementById("Login");
       const modalInstance = bootstrap.Modal.getInstance(loginModal);
       modalInstance.hide();
+      setUiAfterLogin();
     })
     .catch((error) => console.log("error", error));
 }
+function checkIfUserIsLoggedIn() {
+  if (localStorage.getItem("token") != null) {
+    setUiAfterLogin();
+  }
+}
+checkIfUserIsLoggedIn();
 
 function showSuccessMessage() {
   customAlert("You are logged in."); //alert box on load
+}
+
+function setUiAfterLogin() {
+  document.getElementById("login-form").style.display = "none";
+  document.getElementById("Register-form").style.display = "none";
+  const myList = document.getElementById("list");
+  const userData = JSON.parse(localStorage.getItem("user-data"));
+  console.log(userData);
+
+  myList.innerHTML += `
+                    <li>
+                        <a class="vlink rounded" href="#">
+                          <img class=" rounded-circle border border-1 w-50 mb-5" src="${
+                            userData.profile_image
+                          }" ></img>
+                          <span>${userData.name.toUpperCase()}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="logOut" onClick="logOut(event)" class="vlink rounded" href="#">
+                          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                          <span>Log out</span>
+                        </a>
+                    </li>
+  `;
+  document.getElementById("create-post").style.display = "block";
+}
+
+function logOut(event) {
+  const ask = confirm("Are you sure you want to log out?");
+  if (!ask) {
+    return;
+  }
+  event.preventDefault();
+  localStorage.removeItem("token");
+  localStorage.removeItem("user-data");
+  location.reload();
 }
