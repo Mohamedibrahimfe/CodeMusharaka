@@ -44,14 +44,6 @@ fetch(`${baseUrl}/posts?limit=2`, requestOptions)
   })
   .catch((error) => console.log("error", error));
 
-function authentication() {
-  body = {
-    username: document.getElementById("username").value,
-    password: document.getElementById("password").value,
-  };
-
-  fetch(`${baseUrl}/register`);
-}
 
 function Login() {
   body = {
@@ -88,6 +80,10 @@ function showSuccessMessage() {
   customAlert("You are logged in."); //alert box on load
 }
 
+function showSuccessLoggedOut() {
+  customAlert("You are logged out Successfully."); //alert box on load
+}
+
 function setUiAfterLogin() {
   document.getElementById("login-form").style.display = "none";
   document.getElementById("Register-form").style.display = "none";
@@ -111,7 +107,9 @@ function setUiAfterLogin() {
                         </a>
                     </li>
   `;
-  document.getElementById("create-post").style.display = "block";
+  document
+    .getElementById("create-post")
+    .style.setProperty("display", "block", "important");
 }
 
 function logOut(event) {
@@ -124,3 +122,34 @@ function logOut(event) {
   localStorage.removeItem("user-data");
   location.reload();
 }
+
+function Registration() {
+  // body = {
+  //   username: document.getElementById("recipient-name").value,
+  //   password: document.getElementById("password-input").value,
+  //   name: document.getElementById("name-register").value,
+  //   email: document.getElementById("recipient-email").value,
+  //   image: document.getElementById("image-register").value,
+  // };
+  body = {
+    name: "mohamzxzx",
+    email: "7p8v5@example.com",
+    password: "123456",
+    username: "XXXXXXXXX",
+  };
+  fetch(`${baseUrl}/register`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+    },
+    // body: JSON.stringify(body),
+    body: body,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => console.log("error", error));
+}
+
+function createPost() {}

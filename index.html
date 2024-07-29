@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="assets/all.min.css">
     <link rel="stylesheet" href="assets/normalize.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/toastr/build/toastr.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -28,13 +27,14 @@
                         <a class="vlink rounded" href="#"><i class="fas fa-newspaper"></i><span>News</span></a>
                     </li>
                     <li id="login-form">
-                        <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Login" href="#"><i class="fa-solid fa-user-plus"></i>
+                        <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Login" href="#"><i
+                                class="fa-solid  fa-right-to-bracket"></i>
                             <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#Login">Login</span>
                         </a>
                     </li>
                     <li id="Register-form">
                         <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Register" href="#"><i
-                                class="fa-solid fa-right-to-bracket"></i>
+                                class="fa-solid fa-user-plus"></i>
                             <span class="cursor-pointer" data-bs-toggle="modal"
                                 data-bs-target="#Register">Register</span>
                         </a>
@@ -72,6 +72,10 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
+                            <label for="message-text" class="col-form-label">name :</label>
+                            <input type="text" class="form-control" id="name-register"></input>
+                            </div>
+                            <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">E-mail :</label>
                             <input type="email" class="form-control" id="recipient-email">
                         </div>
@@ -83,11 +87,15 @@
                             <label for="message-text" class="col-form-label">password :</label>
                             <input type="password" class="form-control" id="password-input"></input>
                         </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">image :</label>
+                            <input type="file" class="form-control" id="image-register"></input>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" onclick="Registration()" id="submit">Submit</button>
                 </div>
             </div>
         </div>
