@@ -70,7 +70,12 @@ function Login() {
     .catch((error) => console.log("error", error));
 }
 function checkIfUserIsLoggedIn() {
-  if (localStorage.getItem("token") != null) {
+  if (
+    localStorage.getItem("token").value == null ||
+    localStorage.getItem("token").value == undefined
+  ) {
+    return;
+  } else {
     setUiAfterLogin();
   }
 }
@@ -124,30 +129,32 @@ function logOut(event) {
 }
 
 function Registration() {
-  // body = {
-  //   username: document.getElementById("recipient-name").value,
-  //   password: document.getElementById("password-input").value,
-  //   name: document.getElementById("name-register").value,
-  //   email: document.getElementById("recipient-email").value,
-  //   image: document.getElementById("image-register").value,
-  // };
   body = {
-    name: "mohamzxzx",
-    email: "7p8v5@example.com",
-    password: "123456",
-    username: "XXXXXXXXX",
+    username: document.getElementById("userNameRegister").value,
+    password: document.getElementById("password-input").value,
+    name: document.getElementById("name-register").value,
+    email: document.getElementById("recipient-email").value,
   };
-  fetch(`${baseUrl}/register`, {
+  image = document.getElementById("image-register").files[0];
+  console.log(image.name);
+  const settings = {
     method: "POST",
     headers: {
+      "Content-Type": "application/json",
       Accept: "application/json",
     },
-    // body: JSON.stringify(body),
-    body: body,
-  })
+    body: JSON.stringify(body),
+  };
+  fetch(`${baseUrl}/register`, settings)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user-data", JSON.stringify(data.user));
+      showSuccessMessage();
+      const registerModal = document.getElementById("Register");
+      const modalInstance = bootstrap.Modal.getInstance(registerModal);
+      modalInstance.hide();
+      setUiAfterLogin();
     })
     .catch((error) => console.log("error", error));
 }
