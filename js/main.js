@@ -2,7 +2,7 @@ var requestOptions = {
   method: "GET",
   redirect: "follow",
 };
-
+deleteUndefined();
 fetch(`${baseUrl}/posts?limit=2`, requestOptions)
   .then((response) => response.json())
   .then(function (response) {
@@ -28,12 +28,14 @@ fetch(`${baseUrl}/posts?limit=2`, requestOptions)
                                 ${post.body}
                             </p>
                         </div>
-                        <div class="card-header py-2 pb-0 mb-0 px-2">
+                        <div class="card-header py-3 pb-0 mb-0 px-2">
                             <button type="button" class="btn card-title pb-0 mb-0">
                                 <i class="fa-regular fa-comment "></i>
                                 <span>(${post.comments_count})</span>
                                 Comments
-                            </button>
+                                <span id="postTags" class=" rounded-5 text-center px-2 text-light mx-2"> </span>
+                            </button>                      
+                              
                             </p>
                         </div>
                     </div>
@@ -43,7 +45,6 @@ fetch(`${baseUrl}/posts?limit=2`, requestOptions)
     });
   })
   .catch((error) => console.log("error", error));
-
 
 function Login() {
   body = {
@@ -61,7 +62,7 @@ function Login() {
     .then(function (response) {
       localStorage.setItem("token", response.token);
       localStorage.setItem("user-data", JSON.stringify(response.user));
-      showSuccessMessage();
+      showSuccessMessage("Logged in successfully", "success");
       const loginModal = document.getElementById("Login");
       const modalInstance = bootstrap.Modal.getInstance(loginModal);
       modalInstance.hide();
@@ -71,8 +72,8 @@ function Login() {
 }
 function checkIfUserIsLoggedIn() {
   if (
-    localStorage.getItem("token").value == null ||
-    localStorage.getItem("token").value == undefined
+    localStorage.getItem("token") == null ||
+    localStorage.getItem("token") == undefined
   ) {
     return;
   } else {
@@ -81,12 +82,24 @@ function checkIfUserIsLoggedIn() {
 }
 checkIfUserIsLoggedIn();
 
-function showSuccessMessage() {
-  customAlert("You are logged in."); //alert box on load
-}
+function showSuccessMessage(MyMessage, MyType) {
+  const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+  const appendAlert = (message, type) => {
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+      `   <div>${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      "</div>",
+    ].join("");
 
-function showSuccessLoggedOut() {
-  customAlert("You are logged out Successfully."); //alert box on load
+    alertPlaceholder.append(wrapper);
+  };
+  appendAlert(MyMessage, MyType);
+  setTimeout(() => {
+    const alert = bootstrap.Alert.getOrCreateInstance("#liveAlertPlaceholder");
+    // alert.close();
+  }, 2000);
 }
 
 function setUiAfterLogin() {
@@ -125,7 +138,10 @@ function logOut(event) {
   event.preventDefault();
   localStorage.removeItem("token");
   localStorage.removeItem("user-data");
-  location.reload();
+  showSuccessMessage("Logged out successfully", "danger");
+  setTimeout(() => {
+    location.reload();
+  }, 500);
 }
 
 function Registration() {
@@ -135,8 +151,7 @@ function Registration() {
     name: document.getElementById("name-register").value,
     email: document.getElementById("recipient-email").value,
   };
-  image = document.getElementById("image-register").files[0];
-  console.log(image.name);
+  console.log(body);
   const settings = {
     method: "POST",
     headers: {
@@ -160,3 +175,12 @@ function Registration() {
 }
 
 function createPost() {}
+
+function deleteUndefined() {
+  if (localStorage.getItem("token") === undefined) {
+    localStorage.removeItem("user-data");
+    localStorage.removeItem("token");
+    // setUiAfterLogin();
+    location.reload();
+  }
+}
