@@ -96,3 +96,6 @@ a.vlink {
     z-index: 999 ;
     width: 450px;
   }
+  #postBody{
+    height: 200px;
+  }
