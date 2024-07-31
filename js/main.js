@@ -2,13 +2,15 @@ var requestOptions = {
   method: "GET",
   redirect: "follow",
 };
-fetch(`${baseUrl}/posts?limit=2`, requestOptions)
-  .then((response) => response.json())
-  .then(function (response) {
-    let posts = response.data;
-    document.getElementById("posts").innerHTML = "";
-    posts.map(function (post) {
-      let postBox = `
+getAllPosts();
+function getAllPosts() {
+  fetch(`${baseUrl}/posts?limit=2`, requestOptions)
+    .then((response) => response.json())
+    .then(function (response) {
+      let posts = response.data;
+      document.getElementById("posts").innerHTML = "";
+      posts.map(function (post) {
+        let postBox = `
             <div class="mt-4 pb-2" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
@@ -40,10 +42,11 @@ fetch(`${baseUrl}/posts?limit=2`, requestOptions)
                     </div>
                 </div>
                 `;
-      document.getElementById("posts").innerHTML += postBox;
-    });
-  })
-  .catch((error) => console.log("error", error));
+        document.getElementById("posts").innerHTML += postBox;
+      });
+    })
+    .catch((error) => console.log("error", error));
+}
 
 function Login() {
   body = {
@@ -106,8 +109,6 @@ function setUiAfterLogin() {
   document.getElementById("Register-form").style.display = "none";
   const myList = document.getElementById("list");
   const userData = JSON.parse(localStorage.getItem("user-data"));
-  console.log(userData);
-
   myList.innerHTML += `
                     <li>
                         <a class="vlink rounded" href="#">
@@ -174,18 +175,14 @@ function Registration() {
 }
 
 function createPost() {
-  const title = document.getElementById("postTitle").value;
-  const body = document.getElementById("postBody").value;
-  const image = document.getElementById("postImage").files[0];
   let form = new FormData();
-  form.append("title", JSON.stringify(title));
-  form.append("body", JSON.stringify(body));
-  form.append("image", image);
-
+  form.append("title", document.getElementById("postTitle").value);
+  form.append("body", document.getElementById("postBody").value);
+  form.append("image", document.getElementById("postImage").files[0]);
+  console.log(form);
   const settings = {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Accept: "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -194,13 +191,15 @@ function createPost() {
   fetch(`${baseUrl}/posts`, settings)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       showSuccessMessage("Post created successfully", "success");
-      setTimeout(() => {
-        location.reload();
-      }, 500);
+      const createPostModal = document.getElementById("create-post-modal");
+      const modalInstance = bootstrap.Modal.getInstance(createPostModal);
+      modalInstance.hide();
+      getAllPosts();
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      document.getElementById("create-post-modal").append(error);
+    });
 }
 
 

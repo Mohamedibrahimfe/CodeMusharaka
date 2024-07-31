@@ -60,37 +60,7 @@
         class="fa-solid fa-circle-plus"></i></div>
 
 
-<!--create post modal  -->
-<div class="modal fade" id="create-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Create a new post</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Title :</label>
-                        <input type="text" class="form-control" id="postTitle"></input>
-                    </div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">body :</label>
-                        <textarea type="text" class="form-control" id="postBody"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">image :</label>
-                            <input type="file" class="form-control" id="postImage"></input>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="createPost()" id="submit">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 
@@ -99,6 +69,7 @@
 
 
     <!-- modal -->
+    <!-- Register -->
     <div class="modal fade" id="Register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -133,6 +104,7 @@
             </div>
         </div>
     </div>
+    <!-- login -->
     <div class="modal fade" id="Login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -159,7 +131,37 @@
             </div>
         </div>
     </div>
-
+<!--create post modal  -->
+<div class="modal fade" id="create-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Create a new post</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Title :</label>
+                        <input type="text" class="form-control" id="postTitle"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">body :</label>
+                        <textarea type="text" class="form-control" id="postBody"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">image :</label>
+                        <input type="file" class="form-control" id="postImage"></input>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="createPost()" id="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 
