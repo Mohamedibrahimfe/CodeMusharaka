@@ -172,7 +172,8 @@ function Registration() {
       setUiAfterLogin();
     })
     .catch((error) => {
-      showSuccessMessage(error.message, "danger");
+      error = error.response.data;
+      document.getElementById("Register-error-place").innerHTML = error.message;
     });
 }
 
@@ -199,6 +200,7 @@ function createPost() {
       getAllPosts();
     })
     .catch((error) => {
-      showSuccessMessage("Error creating post", "danger");
+      errors = error.response.data.message;
+      document.getElementById("create-post-error-place").innerHTML = errors;
     });
 }

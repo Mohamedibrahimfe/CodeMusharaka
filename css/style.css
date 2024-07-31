@@ -110,3 +110,8 @@ a.vlink {
   #postBody{
     height: 200px;
   }
+  .error-message{
+    color: red;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
