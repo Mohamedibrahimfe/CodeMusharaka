@@ -109,13 +109,14 @@ function setUiAfterLogin() {
   document.getElementById("Register-form").style.display = "none";
   const myList = document.getElementById("list");
   const userData = JSON.parse(localStorage.getItem("user-data"));
+  const name = userData.name.split(" ")[0];
   myList.innerHTML += `
                     <li>
                         <a class="vlink rounded" href="#">
                           <img class=" rounded-circle border border-1 w-50 mb-5" src="${
                             userData.profile_image
                           }" ></img>
-                          <span>${userData.name.toUpperCase()}</span>
+                          <span>${name.toUpperCase()}</span>
                         </a>
                     </li>
                     <li>
@@ -145,33 +146,34 @@ function logOut(event) {
 }
 
 function Registration() {
-  body = {
-    username: document.getElementById("userNameRegister").value,
-    password: document.getElementById("password-input").value,
-    name: document.getElementById("name-register").value,
-    email: document.getElementById("recipient-email").value,
-  };
-  console.log(body);
-  const settings = {
+  const form = new FormData();
+  form.append("username", document.getElementById("userNameRegister").value);
+  form.append("password", document.getElementById("password-input").value);
+  form.append("name", document.getElementById("name-register").value);
+  form.append("email", document.getElementById("recipient-email").value);
+  form.append("image", document.getElementById("image-input").files[0]);
+
+  axios({
     method: "POST",
+    url: `${baseUrl}/register`,
     headers: {
-      "Content-Type": "application/json",
       Accept: "application/json",
     },
-    body: JSON.stringify(body),
-  };
-  fetch(`${baseUrl}/register`, settings)
-    .then((response) => response.json())
+    data: form,
+  })
     .then((data) => {
+      data = data.data;
       localStorage.setItem("token", data.token);
       localStorage.setItem("user-data", JSON.stringify(data.user));
-      showSuccessMessage();
+      showSuccessMessage("Registered successfully", "success");
       const registerModal = document.getElementById("Register");
       const modalInstance = bootstrap.Modal.getInstance(registerModal);
       modalInstance.hide();
       setUiAfterLogin();
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      showSuccessMessage(error.message, "danger");
+    });
 }
 
 function createPost() {
@@ -200,5 +202,3 @@ function createPost() {
       showSuccessMessage("Error creating post", "danger");
     });
 }
-
-
