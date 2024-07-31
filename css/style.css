@@ -78,8 +78,19 @@ a.vlink {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #000;
+    background: #01f241;
     color: #fff;
+    font-size: 30px;
+    transition: 0.3s;
+    z-index: 999;
+    outline:none;
+    box-shadow: 0 0 5px rgba(123, 255, 176, 0.832);
+  }
+  .create-post:hover{
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    box-shadow: 0 0 10px rgba(123, 255, 176, 0.832);
   }
   .create-post i{
     position: absolute;
