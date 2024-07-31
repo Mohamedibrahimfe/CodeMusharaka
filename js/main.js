@@ -1,13 +1,15 @@
-var requestOptions = {
-  method: "GET",
-  redirect: "follow",
-};
 getAllPosts();
 function getAllPosts() {
-  fetch(`${baseUrl}/posts?limit=2`, requestOptions)
-    .then((response) => response.json())
-    .then(function (response) {
-      let posts = response.data;
+  axios({
+    method: "get",
+    url: `${baseUrl}/posts?limit=2`,
+    headers: {
+      Accept: "application/json",
+    },
+    redirect: "follow",
+  })
+    .then((response) => {
+      let posts = response.data.data;
       document.getElementById("posts").innerHTML = "";
       posts.map(function (post) {
         let postBox = `
@@ -49,28 +51,35 @@ function getAllPosts() {
 }
 
 function Login() {
-  body = {
-    username: document.getElementById("login-name").value,
-    password: document.getElementById("password-input-login").value,
-  };
-  fetch(`${baseUrl}/login`, {
+  const form = new FormData();
+  form.append("username", document.getElementById("login-name").value);
+  form.append(
+    "password",
+    document.getElementById("password-input-login").value
+  );
+  axios({
     method: "POST",
+    url: `${baseUrl}/login`,
     headers: {
-      "Content-Type": "application/json",
+      Accept: "application/json",
     },
-    body: JSON.stringify(body),
+    data: form,
   })
-    .then((response) => response.json())
     .then(function (response) {
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("user-data", JSON.stringify(response.user));
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user-data", JSON.stringify(response.data.user));
       showSuccessMessage("Logged in successfully", "success");
       const loginModal = document.getElementById("Login");
       const modalInstance = bootstrap.Modal.getInstance(loginModal);
       modalInstance.hide();
       setUiAfterLogin();
+      getAllPosts();
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      myError = error.response.data.message;
+      // error = error.response.data.message;
+      document.getElementById("login-error-place").innerHTML = myError;
+    });
 }
 function checkIfUserIsLoggedIn() {
   if (
@@ -203,4 +212,14 @@ function createPost() {
       errors = error.response.data.message;
       document.getElementById("create-post-error-place").innerHTML = errors;
     });
+}
+function deleteUndefined() {
+  if (localStorage.getItem("token").value === undefined) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user-data");
+  }
+  if (localStorage.getItem("user-data") === undefined) {
+    localStorage.removeItem("user-data");
+    localStorage.removeItem("token");
+  }
 }
