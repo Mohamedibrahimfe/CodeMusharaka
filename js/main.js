@@ -179,18 +179,17 @@ function createPost() {
   form.append("title", document.getElementById("postTitle").value);
   form.append("body", document.getElementById("postBody").value);
   form.append("image", document.getElementById("postImage").files[0]);
-  console.log(form);
-  const settings = {
-    method: "POST",
+
+  axios({
+    method: "post",
+    url: `${baseUrl}/posts`,
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: form,
-  };
-  fetch(`${baseUrl}/posts`, settings)
-    .then((response) => response.json())
-    .then((data) => {
+    data: form,
+  })
+    .then((response) => {
       showSuccessMessage("Post created successfully", "success");
       const createPostModal = document.getElementById("create-post-modal");
       const modalInstance = bootstrap.Modal.getInstance(createPostModal);
@@ -198,7 +197,7 @@ function createPost() {
       getAllPosts();
     })
     .catch((error) => {
-      document.getElementById("create-post-modal").append(error);
+      showSuccessMessage("Error creating post", "danger");
     });
 }
 
