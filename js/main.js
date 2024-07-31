@@ -2,7 +2,6 @@ var requestOptions = {
   method: "GET",
   redirect: "follow",
 };
-deleteUndefined();
 fetch(`${baseUrl}/posts?limit=2`, requestOptions)
   .then((response) => response.json())
   .then(function (response) {
@@ -174,13 +173,34 @@ function Registration() {
     .catch((error) => console.log("error", error));
 }
 
-function createPost() {}
+function createPost() {
+  const title = document.getElementById("postTitle").value;
+  const body = document.getElementById("postBody").value;
+  const image = document.getElementById("postImage").files[0];
+  let form = new FormData();
+  form.append("title", JSON.stringify(title));
+  form.append("body", JSON.stringify(body));
+  form.append("image", image);
 
-function deleteUndefined() {
-  if (localStorage.getItem("token") === undefined) {
-    localStorage.removeItem("user-data");
-    localStorage.removeItem("token");
-    // setUiAfterLogin();
-    location.reload();
-  }
+  const settings = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: form,
+  };
+  fetch(`${baseUrl}/posts`, settings)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      showSuccessMessage("Post created successfully", "success");
+      setTimeout(() => {
+        location.reload();
+      }, 500);
+    })
+    .catch((error) => console.log("error", error));
 }
+
+
