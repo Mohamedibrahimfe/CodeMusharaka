@@ -1,8 +1,10 @@
-getAllPosts();
-function getAllPosts() {
+let currentPage = 1;
+let lastPage = 1;
+getAllPosts(1);
+function getAllPosts(page = 1) {
   axios({
     method: "get",
-    url: `${baseUrl}/posts?limit=2`,
+    url: `${baseUrl}/posts?limit=1&page=${page}`,
     headers: {
       Accept: "application/json",
     },
@@ -10,7 +12,7 @@ function getAllPosts() {
   })
     .then((response) => {
       let posts = response.data.data;
-      document.getElementById("posts").innerHTML = "";
+      lastPage = response.data.meta.last_page;
       posts.map(function (post) {
         let postBox = `
             <div class="mt-4 pb-2" id="post">
@@ -47,7 +49,7 @@ function getAllPosts() {
         document.getElementById("posts").innerHTML += postBox;
       });
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => console.log(error.message));
 }
 
 function Login() {
@@ -223,3 +225,13 @@ function deleteUndefined() {
     localStorage.removeItem("token");
   }
 }
+
+const handleInfiniteScroll = () => {
+  const endOfPage =
+    window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+  if (endOfPage && currentPage < lastPage) {
+    getAllPosts(currentPage + 1);
+    currentPage++;
+  }
+};
+window.addEventListener("scroll", handleInfiniteScroll);
