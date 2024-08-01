@@ -70,4 +70,7 @@ function fillNewPage(id) {
     })
     .catch((error) => console.log(error.message));
 }
-fillNewPage(localStorage.getItem("post-id"));
+// fillNewPage(localStorage.getItem("post-id"));
+const urlParams = new URLSearchParams(window.location.search);
+const passUrlParams = urlParams.get("id");
+fillNewPage(passUrlParams);

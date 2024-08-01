@@ -1,7 +1,7 @@
 let currentPage = 1;
 let lastPage = 1;
 getAllPosts();
-function getAllPosts(page = 1) {
+function getAllPosts(page = 2) {
   axios({
     method: "get",
     url: `${baseUrl}/posts?limit=1&page=${page}`,
@@ -14,6 +14,9 @@ function getAllPosts(page = 1) {
       let posts = response.data.data;
       lastPage = response.data.meta.last_page;
       posts.map(function (post) {
+        while (post.body == null || post.image == null) {
+          continue;
+        }
         let postBox = `
             <div  class="mt-4 pb-2" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
@@ -238,7 +241,7 @@ window.addEventListener("scroll", handleInfiniteScroll);
 
 function sendPostData(id) {
   this.addEventListener("click", () => {
-    localStorage.setItem("post-id", id);
-    window.location.href = `postDetails.html`;
+    // localStorage.setItem("post-id", id);
+    window.location.href = `postDetails.html?id=${id}`;
   });
 }
