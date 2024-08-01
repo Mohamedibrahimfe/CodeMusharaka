@@ -1,6 +1,6 @@
 let currentPage = 1;
 let lastPage = 1;
-getAllPosts(1);
+getAllPosts();
 function getAllPosts(page = 1) {
   axios({
     method: "get",
@@ -15,7 +15,7 @@ function getAllPosts(page = 1) {
       lastPage = response.data.meta.last_page;
       posts.map(function (post) {
         let postBox = `
-            <div onClick="openPost(${post.id})" class="mt-4 pb-2" id="post">
+            <div  class="mt-4 pb-2" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
                             <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
@@ -27,13 +27,13 @@ function getAllPosts(page = 1) {
                             alt="Post image">
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger time">${post.created_at}
                         </span>
-                        <div class="card-body">
+                        <div role="button" class="card-body cursor-pointer" onclick="sendPostData(${post.id})">
                             <h5 class="card-title">${post.title}</h5>
                             <p class="card-text">
                                 ${post.body}
                             </p>
                         </div>
-                        <div class="card-header py-3 pb-0 mb-0 px-2">
+                        <div role="button" class="card-header cursor-pointer py-3 pb-0 mb-0 px-2">
                             <button type="button" class="btn card-title pb-0 mb-0">
                                 <i class="fa-regular fa-comment "></i>
                                 <span>(${post.comments_count})</span>
@@ -236,51 +236,9 @@ const handleInfiniteScroll = () => {
 };
 window.addEventListener("scroll", handleInfiniteScroll);
 
-function openPost(id) {
-  axios({
-    method: "get",
-    url: `${baseUrl}/posts/${id}`,
-    headers: {
-      Accept: "application/json",
-    },
-    redirect: "follow",
-  })
-    .then((response) => {
-      let post = response.data.data;
-      localStorage.setItem("post-data", JSON.stringify(post));
-      const postContent = `
-  <div onClick="openPost(${post.id})" class="mt-4 pb-2" id="post">
-                    <div class="card border border-1 shadow" style="width:55rem;">
-                        <div class="card-header">
-                            <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
-                                    src="${post.author.profile_image}" width="40px" height="40px"
-                                    alt="profile image">${post.author.username}
-                            </button>
-                        </div>
-                        <img class="p-2 w-100" src="${post.image}"
-                            alt="Post image">
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger time">${post.created_at}
-                        </span>
-                        <div class="card-body">
-                            <h5 class="card-title">${post.title}</h5>
-                            <p class="card-text">
-                                ${post.body}
-                            </p>
-                        </div>
-                        <div class="card-header py-3 pb-0 mb-0 px-2">
-                            <button type="button" class="btn card-title pb-0 mb-0">
-                                <i class="fa-regular fa-comment "></i>
-                                <span>(${post.comments_count})</span>
-                                Comments
-                                <span id="postTags" class=" rounded-5 text-center px-2 text-light mx-2"> </span>
-                            </button>                      
-                              
-                            </p>
-                        </div>
-                    </div>
-                </div>
-  `;
-      window.location.href = `postDetails.html?postId=${id}`;
-    })
-    .catch((error) => console.log(error.message));
+function sendPostData(id) {
+  this.addEventListener("click", () => {
+    localStorage.setItem("post-id", id);
+    window.location.href = `postDetails.html`;
+  });
 }

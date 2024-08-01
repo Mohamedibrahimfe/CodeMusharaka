@@ -4,6 +4,7 @@
         <title>Title</title>
         <meta charset="utf-8" />
         <meta name="viewport content="width=device-width, initial-scale=1, shrink-to-fit=no />
+        <script src="node_modules/axios/dist/axios.min.js"></script>
         <link rel="stylesheet" href="assets/all.min.css" />
         <link rel="stylesheet" href="assets/normalize.css" />
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
@@ -16,7 +17,7 @@
                 <div id="mainNav">
                     <ul id="list" class="list-unstyled rounded ms-2">
                         <li>
-                            <a class="vlink rounded border-0" href="#"><i class="fas fa-home"></i><span>Home</span></a>
+                            <a class="vlink rounded border-0" href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
                         </li>
                         <li>
                             <a class="vlink rounded" href="#"><i
@@ -43,12 +44,14 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <h1 class="text-center my-3">Nexus</h1>
+        <div class="container d-flex justify-content-center" style="height:100vh">
+            <div id="detaildPosts">
+
+            </div>
         </div>
-        
     </body>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/private.js"></script>
+    <script src="js/details.js"></script>
     <script src="js/main.js"></script>
 </html>
