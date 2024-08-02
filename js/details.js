@@ -1,3 +1,7 @@
+const urlParams = new URLSearchParams(window.location.search);
+const passUrlParams = urlParams.get("id");
+fillNewPage(passUrlParams);
+
 function fillNewPage(id) {
   axios({
     method: "get",
@@ -63,6 +67,12 @@ function fillNewPage(id) {
                         <div class="card-footer p-3 ">
                             ${comments}
                         </div>
+                        <div class="p-3 ">
+                            <button onclick="addComment(${post.id})" class="btn btn-primary p-2" id="addComment">Add a comment </button>
+                        </div>
+                        <div class="card-footer p-3 ">
+                            <input type="text" class="form-control " id="comment" placeholder="Add a comment">
+                        </div>    
                     </div>
                 </div>
     `;
@@ -70,7 +80,21 @@ function fillNewPage(id) {
     })
     .catch((error) => console.log(error.message));
 }
-// fillNewPage(localStorage.getItem("post-id"));
-const urlParams = new URLSearchParams(window.location.search);
-const passUrlParams = urlParams.get("id");
-fillNewPage(passUrlParams);
+function addComment(id) {
+  axios({
+    method: "post",
+    url: `${baseUrl}/posts/${id}/comments`,
+    headers: {
+      Accept: "application/json",
+    },
+    data: {
+      body: document.getElementById("comment").value,
+    },
+    redirect: "follow",
+  })
+    .then((response) => {
+      console.log(response.data);
+      //   fillNewPage(id);
+    })
+    .catch((error) => console.log(error.message));
+}
