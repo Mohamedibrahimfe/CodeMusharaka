@@ -13,10 +13,16 @@ function getAllPosts(page = 2) {
     .then((response) => {
       let posts = response.data.data;
       lastPage = response.data.meta.last_page;
+      // lastPage = 3;
       posts.map(function (post) {
-        while (post.body == null || post.image == null) {
-          continue;
-        }
+        // while (
+        //   post.title == null ||
+        //   post.body == null ||
+        //   post.author.profile_image == null
+        // ) {
+        //   // continue;
+        // }
+        // console.log(post);
         let postBox = `
             <div  class="mt-4 pb-2" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
