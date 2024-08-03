@@ -62,7 +62,7 @@ function fillNewPage(id) {
                                 Comments
                                 <span id="postTags" class=" rounded-5 text-center px-2 text-light mx-2"> </span>
                             </button>                      
-                            <i class="fa-regular fa-edit ms-auto p-2 font-bold"></i>
+                            <i onclick="checkIfUserOwnsPost(${post.id})" id="editPostBtn" data-bs-toggle="modal" data-bs-target="#update" class="fa-regular fa-edit ms-auto p-2 h4 cursor-pointer text-primary" role="button"></i>
                         </div>
                         <div class="card-footer" id="commentsPlace">
                             ${comments}
@@ -113,14 +113,25 @@ function checkIfUserIsLoggedIn() {
 
 function checkIfUserOwnsPost() {}
 function updatePost(id) {
+  const token = localStorage.getItem("token");
   const form = new FormData();
-
+  form.append("title", document.getElementById("update-post-title").value);
+  form.append("title", document.getElementById("update-post-body").value);
+  form.append("title", document.getElementById("update-post-image").files[0]);
   axios({
     method: "put",
     url: `${baseUrl}/posts/${id}`,
     headers: {
       Accept: "application/json",
+      Authorization: "Bearer " + token,
     },
     data: form,
-  });
+  })
+    .then((response) => {
+      console.log(response.data);
+      //   fillNewPage(id);
+    })
+    .catch((error) => {
+      showSuccessMessage(error.response.data.message, "danger");
+    });
 }
