@@ -4,7 +4,7 @@ getAllPosts();
 function getAllPosts(page = 1) {
   axios({
     method: "get",
-    url: `${baseUrl}/posts?limit=1&page=${page}`,
+    url: `${baseUrl}/posts?limit=5&page=${page}`,
     headers: {
       Accept: "application/json",
     },
@@ -15,7 +15,6 @@ function getAllPosts(page = 1) {
       lastPage = response.data.meta.last_page;
       // lastPage = 3;
       let userId = JSON.parse(localStorage.getItem("user-data")) || "ok";
-      console.log(userId);
       posts.map(function (post) {
         let postBox = `
             <div  class="mt-4 pb-2" id="post">
@@ -264,7 +263,7 @@ function createPost() {
 }
 const handleInfiniteScroll = () => {
   const endOfPage =
-    window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+    window.innerHeight + window.pageYOffset >= document.body.scrollHeight;
   if (endOfPage && currentPage < lastPage) {
     getAllPosts(currentPage + 1);
     currentPage++;
@@ -317,7 +316,6 @@ function deletePost(id) {
   })
     .then((response) => {
       showSuccessMessage("Post deleted successfully", "danger");
-      getAllPosts();
       window.location.reload();
     })
     .catch((error) => {

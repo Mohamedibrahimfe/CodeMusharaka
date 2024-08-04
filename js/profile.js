@@ -140,6 +140,7 @@ function deletePost(id) {
     });
 }
 function updatePost(post) {
+    post = decodeURIComponent(post);
   document.getElementById("submitBtn").innerHTML = "Update Post";
   document.getElementById("modal-title").innerHTML = "Edit Post";
   post = JSON.parse(decodeURIComponent(post));
