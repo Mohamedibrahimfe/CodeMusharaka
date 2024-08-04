@@ -42,7 +42,7 @@ function getAllPosts(page = 1) {
                                 ${post.body}
                             </p>
                         </div>
-                        <div role="button" class="card-header cursor-pointer py-3 pb-0 mb-0 px-2 d-flex justify-content-between">
+                        <div role="button" class="card-header cursor-pointer py-3 mb-0 px-2 d-flex justify-content-between">
                             <button type="button" class="btn card-title pb-0 mb-0">
                                 <i class="fa-regular fa-comment "></i>
                                 <span>(${post.comments_count})</span>
