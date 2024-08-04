@@ -118,3 +118,6 @@ a.vlink {
 i.hidden{
   display: none;
 }
+.big-text{
+  font-size: 70px;
+}
