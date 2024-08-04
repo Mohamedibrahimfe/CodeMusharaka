@@ -17,10 +17,10 @@
             <div id="mainNav">
                 <ul id="list" class="list-unstyled rounded ms-2">
                     <li>
-                        <a class="vlink rounded border-0" href="#index.html"><i class="fas fa-home"></i><span>Home</span></a>
+                        <a class="vlink rounded border-0" href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
                     <li>
-                        <a class="vlink rounded" href="#"><i
+                        <a class="vlink rounded" href="profile.html"><i
                                 class="fa-regular fa-circle-user"></i><span>Profile</span></a>
                     </li>
                     <li>
@@ -45,20 +45,20 @@
         </div>
     </div>
     <div class="container">
-        <h1 class="text-center my-3">Nexus</h1>
+        <h1 class="text-center my-3 mb-5">Nexus</h1>
     </div>
     <section>
         <div class="container d-flex justify-content-center" style="height:30vh;min-width: 50rem;">
             <div id="mainInfo" class="d-flex justify-content-between gap-5 align-items-center shadow p-3">
-                <img src="assets/images/IMG_20220917_002638_075.jpg" class="rounded-circle" width="150px" height="150px" alt="">
-                <div class="d-flex flex-column ">
-                    <h1 class="text-left h6">User name: <span class="h4">Mohamed ibrahim</span></h1>
-                    <h1 class="text-left center h6">Email: <span class="h4">mohamed.ibrahimfe@gmail.com</span></h1>
-                    <h1 class="text-left h6">Name: <span class="h4">Mohamed Ibrahim</span></h1>
+                <img id="profileImg" src="" class="rounded-circle" width="150px" height="150px" alt="">
+                <div class="d-flex flex-column gap-3 ">
+                    <h1 class="text-left h6">User name: <span id="username" class="h4">Mohamed ibrahim</span></h1>
+                    <h1 class="text-left center h6">Email: <span id="email" class="h4">mohamed.ibrahimfe@gmail.com</span></h1>
+                    <h1 class="text-left h6">Name: <span id="name" class="h4">Mohamed Ibrahim</span></h1>
                 </div>
-                <div class="d-flex flex-column ">
-                    <h1 class="text-center big-text text-secondary">30 <span class="h4"> posts</span></h1>
-                    <h1 class="text-center big-text text-secondary">50 <span class="h4"> comments</span></h1>
+                <div class="d-flex flex-column gap-3 ">
+                    <h1 class="text-center text-secondary"><span id="postsNum" class="h4 big-text"></span> <span  class="h4"> posts</span></h1>
+                    <h1 class="text-center text-secondary"><span id="comments" class="h4 big-text"></span> <span id="comments" class="h4"> comments</span></h1>
                 </div>
             </div>
         </div>
@@ -66,13 +66,49 @@
         <div class="container pt-5">
             <h1 class="my-3 ">User's Posts</h1>
         </div>
-        <div class="container d-flex justify-content-center mt-5 shadow" style="height:100vh">
+        <div class="container d-flex justify-content-center mt-5 shadow" style="min-height:100vh">
             <div id="posts">
             </div>
         </div>
     </section>
 
 
+
+<!-- Modal -->
+    <div class="modal fade" id="create-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal-title">Create a new post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Title :</label>
+                            <input type="text" class="form-control" id="postTitle"></input>
+                            <input type="hidden" id="post-id" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">body :</label>
+                            <textarea type="text" class="form-control" id="postBody"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">image :</label>
+                            <input type="file" class="form-control" id="postImage"></input>
+                        </div>
+                    </form>
+                </div>
+                <div id="create-post-error-place" class="error-message"></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="createPost()" id="submitBtn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/private.js"></script>
     <script src="js/profile.js"></script>
 </body>
 </html>

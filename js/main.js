@@ -262,16 +262,6 @@ function createPost() {
         });
   }
 }
-function deleteUndefined() {
-  if (localStorage.getItem("token").value === undefined) {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user-data");
-  }
-  if (localStorage.getItem("user-data") === undefined) {
-    localStorage.removeItem("user-data");
-    localStorage.removeItem("token");
-  }
-}
 const handleInfiniteScroll = () => {
   const endOfPage =
     window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
