@@ -14,8 +14,8 @@ function getAllPosts(page = 1) {
       let posts = response.data.data;
       lastPage = response.data.meta.last_page;
       // lastPage = 3;
-      let userId = localStorage.getItem("user-data");
-      userId = JSON.parse(userId);
+      let userId = JSON.parse(localStorage.getItem("user-data")) || "ok";
+      console.log(userId);
       posts.map(function (post) {
         let postBox = `
             <div  class="mt-4 pb-2" id="post">
@@ -49,10 +49,18 @@ function getAllPosts(page = 1) {
                                 Comments
                                 <span id="postTags" class=" rounded-5 text-center px-2 text-light mx-2"> </span>
                             </button>                      
-<i  onclick="updatePost('${encodeURIComponent(JSON.stringify(post))}')"
+                            <div>
+                              <i  onclick="updatePost('${encodeURIComponent(
+                                JSON.stringify(post)
+                              )}')"
  id="editPostBtn" data-bs-toggle="modal" data-bs-target="#update" class=" ${
    userId.id == post.author.id ? "" : "hidden"
- } fa-regular fa-edit ms-auto p-2 h4 cursor-pointer text-primary" role="button"></i>
+ } fa-regular fa-edit mx-2  p-2 h4 cursor-pointer text-primary" role="button"></i>
+ <i  onclick="deletePost('${encodeURIComponent(JSON.stringify(post.id))}')"
+ id="deletePostBtn" class=" ${
+   userId.id == post.author.id ? "" : "hidden"
+ } fa-regular fa-trash-can mx-2 ms-auto p-2 h4 cursor-pointer text-primary" role="button"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,6 +95,7 @@ function Login() {
       modalInstance.hide();
       setUiAfterLogin();
       getAllPosts();
+      window.location.reload();
     })
     .catch((error) => {
       myError = error.response.data.message;
@@ -263,7 +272,6 @@ function deleteUndefined() {
     localStorage.removeItem("token");
   }
 }
-
 const handleInfiniteScroll = () => {
   const endOfPage =
     window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
@@ -273,14 +281,12 @@ const handleInfiniteScroll = () => {
   }
 };
 window.addEventListener("scroll", handleInfiniteScroll);
-
 function sendPostData(id) {
   this.addEventListener("click", () => {
     // localStorage.setItem("post-id", id);
     window.location.href = `postDetails.html?id=${id}`;
   });
 }
-
 function updatePost(post) {
   document.getElementById("submitBtn").innerHTML = "Update Post";
   document.getElementById("modal-title").innerHTML = "Edit Post";
@@ -305,4 +311,26 @@ function AddPostBtn() {
     document.getElementById("create-post-modal")
   );
   postModal.toggle();
+}
+function deletePost(id) {
+  const ask = confirm("Are you sure you want to delete this post?");
+  if (!ask) {
+    return;
+  }
+  axios({
+    method: "DELETE",
+    url: `${baseUrl}/posts/${id}`,
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  })
+    .then((response) => {
+      showSuccessMessage("Post deleted successfully", "danger");
+      getAllPosts();
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
