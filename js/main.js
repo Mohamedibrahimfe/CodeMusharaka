@@ -2,6 +2,7 @@ let currentPage = 1;
 let lastPage = 1;
 getAllPosts();
 function getAllPosts(page = 1) {
+  toggleLoader(true);
   axios({
     method: "get",
     url: `${baseUrl}/posts?limit=5&page=${page}`,
@@ -65,6 +66,7 @@ function getAllPosts(page = 1) {
                 </div>
                 `;
         document.getElementById("posts").innerHTML += postBox;
+        toggleLoader(false);
       });
     })
     .catch((error) => console.log(error.message));
@@ -321,4 +323,12 @@ function deletePost(id) {
     .catch((error) => {
       console.log(error);
     });
+}
+
+function toggleLoader(isshow = false) {
+  if (isshow) {
+    document.getElementById("loader").style.visibility = "visible";
+  } else {
+    document.getElementById("loader").style.visibility = "hidden";
+  }
 }
