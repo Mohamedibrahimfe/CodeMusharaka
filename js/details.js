@@ -101,37 +101,3 @@ function addComment(id) {
       showSuccessMessage(error.response.data.message, "danger");
     });
 }
-// checkIfUserIsLoggedIn();
-function checkIfUserIsLoggedIn() {
-  if (localStorage.getItem("token") === null) {
-    return;
-  } else {
-    console.log(document.getElementById("commentSection"));
-    document.getElementById("commentSection").style.border = "red";
-  }
-}
-
-function checkIfUserOwnsPost() {}
-function updatePost(id) {
-  const token = localStorage.getItem("token");
-  const form = new FormData();
-  form.append("title", document.getElementById("update-post-title").value);
-  form.append("title", document.getElementById("update-post-body").value);
-  form.append("title", document.getElementById("update-post-image").files[0]);
-  axios({
-    method: "put",
-    url: `${baseUrl}/posts/${id}`,
-    headers: {
-      Accept: "application/json",
-      Authorization: "Bearer " + token,
-    },
-    data: form,
-  })
-    .then((response) => {
-      console.log(response.data);
-      //   fillNewPage(id);
-    })
-    .catch((error) => {
-      showSuccessMessage(error.response.data.message, "danger");
-    });
-}
