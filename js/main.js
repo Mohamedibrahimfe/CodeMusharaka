@@ -299,8 +299,10 @@ function AddPostBtn() {
   document.getElementById("postTitle").value = "";
   document.getElementById("postBody").value = "";
   document.getElementById("postImage").files[0] = "";
-  new bootstrap.Modal(document.getElementById("create-post-modal")).toggle();
-  // postModal.toggle();
+  let postModal = new bootstrap.Modal(
+    document.getElementById("create-post-modal")
+  );
+  postModal.toggle();
 }
 function deletePost(id) {
   const ask = confirm("Are you sure you want to delete this post?");
@@ -352,8 +354,8 @@ function getUsersData() {
       document.getElementById("postsNum").innerHTML = userId.posts_count;
       document.getElementById("profileImg").src = userId.profile_image;
       document.getElementById("postsTitle").innerHTML = userId.name + " Posts";
-      getAllPostsForSingleUser(userId.id);
       toggleLoader(false);
+      getAllPostsForSingleUser(userId.id);
     })
     .catch((error) => {
       console.log(error);
