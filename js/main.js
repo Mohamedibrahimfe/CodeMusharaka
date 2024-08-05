@@ -303,7 +303,6 @@ const handleInfiniteScroll = () => {
 window.addEventListener("scroll", handleInfiniteScroll);
 function sendPostData(id) {
   this.addEventListener("click", () => {
-    // localStorage.setItem("post-id", id);
     window.location.href = `postDetails.html?id=${id}`;
   });
 }
