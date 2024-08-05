@@ -161,6 +161,26 @@ i.hidden{
     transform: rotate(360deg);
   }
 }
+#dark-mode{
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgb(0, 0, 0);
+  color: #ffffff;
+  font-size: 26px;
+  transition: 0.3s;
+  z-index: 999;
+  outline:none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.832);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 
 body.dark-mode{
   background-color: #222;

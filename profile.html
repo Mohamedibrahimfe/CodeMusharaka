@@ -20,13 +20,6 @@
                     <li>
                         <a class="vlink rounded border-0" href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
-                    <li>
-                        <a class="vlink rounded" href="profile.html"><i
-                                class="fa-regular fa-circle-user"></i><span>Profile</span></a>
-                    </li>
-                    <li>
-                        <a class="vlink rounded" href="#"><i class="fas fa-newspaper"></i><span>News</span></a>
-                    </li>
                     <li id="login-form">
                         <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Login" href="#"><i
                                 class="fa-solid  fa-right-to-bracket"></i>
@@ -75,7 +68,85 @@
 
 
 
-<!-- Modal -->
+    <!-- create post -->
+    <div class="create-post d-none" id="create-post" onclick="AddPostBtn()"><i
+        class="fa-solid fa-circle-plus"></i></div>
+
+    <!-- alerts -->
+    <div class="alert custom-alert fade show position-fixed top-0 end-0 z-3 " role="alert" id="liveAlertPlaceholder">
+    </div>
+
+    <!-- modals -->
+
+    <!-- Register -->
+    <div class="modal fade" id="Register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Register</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">name :</label>
+                            <input type="text" class="form-control" id="name-register"></input>
+                            </div>
+                            <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">E-mail :</label>
+                            <input type="email" class="form-control" id="recipient-email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">User Name :</label>
+                            <input type="text" class="form-control" id="userNameRegister">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">password :</label>
+                            <input type="password" class="form-control" id="password-input"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">image :</label>
+                            <input type="file" class="form-control" id="image-input"></input>
+                        </div>
+                    </form>
+                </div>
+                <div id="Register-error-place" class="error-message"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="Registration()" id="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- login -->
+    <div class="modal fade" id="Login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">User Name :</label>
+                            <input type="text" class="form-control" id="login-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">password :</label>
+                            <input type="password" class="form-control" id="password-input-login"></input>
+                        </div>
+                    </form>
+                </div>
+                <div id="login-error-place" class="error-message"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="Login()" id="loginBtn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--create post modal  -->
     <div class="modal fade" id="create-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -115,13 +186,11 @@
         </div>
     </div>
 
-    <!-- alert -->
-    <div class="alert custom-alert fade show position-fixed top-0 end-0 z-3 " role="alert" id="liveAlertPlaceholder">
-    </div>
 
-    <!-- create post -->
-    <div class="create-post d-none" id="create-post" onclick="AddPostBtn()"><i
-        class="fa-solid fa-circle-plus"></i></div>
+    <!-- dark-light-mode -->
+    <a id="dark-mode">
+        <i class="toggler fa-solid fa-moon"></i>
+    </a>
 
 
     <script src="js/private.js"></script>

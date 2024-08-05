@@ -1,6 +1,7 @@
 let currentPage = 1;
 let lastPage = 1;
 getAllPosts();
+toggleDarkMode();
 function getAllPosts(page = 1) {
   toggleLoader(true);
   axios({
@@ -21,7 +22,7 @@ function getAllPosts(page = 1) {
             <div  class="mt-4 pb-2" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
-                            <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4 text-light"
+                            <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
                                     src="${
                                       post.author.profile_image
                                     }" width="40px" height="40px"
@@ -166,13 +167,14 @@ function showSuccessMessage(MyMessage, MyType) {
 function setUiAfterLogin() {
   document.getElementById("login-form").style.display = "none";
   document.getElementById("Register-form").style.display = "none";
+  document.getElementById("toggleProfile").classList.remove("d-none");
   const myList = document.getElementById("list");
   const userData = JSON.parse(localStorage.getItem("user-data"));
   const name = userData.name.split(" ")[0];
   myList.innerHTML += `
-                    <li>
+                    <li class="py-2">
                         <a class="vlink rounded" href="#">
-                          <img class=" rounded-circle border border-1 w-50 mb-5" src="${
+                          <img class=" rounded-circle border border-1 w-50" src="${
                             userData.profile_image
                           }" ></img>
                           <span>${name.toUpperCase()}</span>
@@ -259,7 +261,7 @@ function createPost() {
         const createPostModal = document.getElementById("create-post-modal");
         const modalInstance = bootstrap.Modal.getInstance(createPostModal);
         modalInstance.hide();
-        getAllPosts();
+        window.location.reload();
       })
       .catch((error) => {
         errors = error.response.data.message;
@@ -423,12 +425,15 @@ function getAllPostsForSingleUser(id) {
     })
     .catch((error) => console.log(error.message));
 }
-document.getElementById("dark-mode").addEventListener("click", function () {
-  document.body.classList.toggle("dark-mode");
-  document.getElementById("mainContainer").classList.toggle("dark-mode");
-  const items = document.querySelectorAll(".card"); // select all elements with class "item"
+function toggleDarkMode() {
+  document.getElementById("dark-mode").addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+    document.getElementById("mainContainer").classList.toggle("dark-mode");
+    const items = document.querySelectorAll(".card");
 
-  items.forEach((item) => {
-    item.classList.toggle("dark-mode"); // toggle the "active" class on each item
+    items.forEach((item) => {
+      item.classList.toggle("dark-mode");
+    });
   });
-});
+}
+

@@ -20,7 +20,7 @@
                     <li>
                         <a class="vlink rounded border-0" href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
-                    <li>
+                    <li id="toggleProfile" class="d-none">
                         <a class="vlink rounded" href="Profile.html"><i
                                 class="fa-regular fa-circle-user"></i><span>Profile</span></a>
                     </li>
@@ -36,9 +36,6 @@
                             <span class="cursor-pointer" data-bs-toggle="modal"
                                 data-bs-target="#Register">Register</span>
                         </a>
-                    </li>
-                    <li id="dark-mode" >
-                        <a class="vlink rounded" href="#"><i class="fa-solid fa-moon"></i><span>Dark Mode</span></a>
                     </li>
                 </ul>
             </div>
@@ -171,6 +168,12 @@
         <div class="lds-ring"><div></div><div></div><div></div><div></div>
         </div>
     </div>
+
+
+    <!-- dark-light-mode -->
+    <a id="dark-mode">
+        <i class="toggler fa-solid fa-moon"></i>
+    </a>
 </body>
 
 

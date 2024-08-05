@@ -1,8 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const passUrlParams = urlParams.get("id");
 fillNewPage(passUrlParams);
-
-
 function fillNewPage(id) {
   axios({
     method: "get",
@@ -14,7 +12,6 @@ function fillNewPage(id) {
   })
     .then((response) => {
       let post = response.data.data;
-      //   localStorage.setItem("post-data", JSON.stringify(post));
       const aouthor = post.author.name;
       const title = `<h1 class="py-5">${aouthor} Post</h1>`;
       const comments = post.comments.map((comment) => {
@@ -73,7 +70,7 @@ function fillNewPage(id) {
                         </div>    
                     </div>
                 </div>
-    `;
+      `;
       document.getElementById("detaildPosts").innerHTML = postContent;
     })
     .catch((error) => {
