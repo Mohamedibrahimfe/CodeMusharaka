@@ -24,9 +24,6 @@
                         <a class="vlink rounded" href="Profile.html"><i
                                 class="fa-regular fa-circle-user"></i><span>Profile</span></a>
                     </li>
-                    <li>
-                        <a class="vlink rounded" href="#"><i class="fas fa-newspaper"></i><span>News</span></a>
-                    </li>
                     <li id="login-form">
                         <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Login" href="#"><i
                                 class="fa-solid  fa-right-to-bracket"></i>
@@ -40,16 +37,18 @@
                                 data-bs-target="#Register">Register</span>
                         </a>
                     </li>
+                    <li id="dark-mode" >
+                        <a class="vlink rounded" href="#"><i class="fa-solid fa-moon"></i><span>Dark Mode</span></a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div  class="container">
         <h1 class="text-center my-3">Nexus</h1>
     </div>
     <section>
-        <div class="container d-flex justify-content-center shadow" style="min-height:100vh">
+        <div id="mainContainer" class="container d-flex justify-content-center shadow" style="min-height:100vh">
             <div id="posts">
             </div>
         </div>
@@ -167,6 +166,7 @@
             </div>
         </div>
     </div>
+    <!-- loader -->
     <div id="loader" class="position-fixed d-flex justify-content-center align-items-center bg-secondary text-light bg-opacity-75 rounded-circle" style="width: 100px; height: 100px; z-index: 1000; margin: auto; top: 0; bottom: 0; left: 0; right: 0;">
         <div class="lds-ring"><div></div><div></div><div></div><div></div>
         </div>

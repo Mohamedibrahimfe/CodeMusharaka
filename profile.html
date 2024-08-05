@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/normalize.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    
 </head>
 <body>
     <div class="vh-100 d-flex align-items-center position-fixed start-0 top-0 z-3" role="navigation">
@@ -49,12 +50,12 @@
     </div>
     <section>
         <div class="container d-flex justify-content-center" style="height:30vh;min-width: 50rem;">
-            <div id="mainInfo" class="d-flex justify-content-between gap-5 align-items-center shadow p-3">
+            <div id="mainInfo" class="d-flex justify-content-between gap-5 align-items-center shadow p-3" style="min-width: 50rem;">
                 <img id="profileImg" src="" class="rounded-circle" width="150px" height="150px" alt="">
                 <div class="d-flex flex-column gap-3 ">
-                    <h1 class="text-left h6">User name: <span id="username" class="h4">Mohamed ibrahim</span></h1>
-                    <h1 class="text-left center h6">Email: <span id="email" class="h4">mohamed.ibrahimfe@gmail.com</span></h1>
-                    <h1 class="text-left h6">Name: <span id="name" class="h4">Mohamed Ibrahim</span></h1>
+                    <h1 class="text-left h6">User name: <span id="username" class="h4"></span></h1>
+                    <h1 class="text-left center h6">Email: <span id="email" class="h4"></span></h1>
+                    <h1 class="text-left h6">Name: <span id="name" class="h4"> </span></h1>
                 </div>
                 <div class="d-flex flex-column gap-3 ">
                     <h1 class="text-center text-secondary"><span id="postsNum" class="h4 big-text"></span> <span  class="h4"> posts</span></h1>
@@ -64,7 +65,7 @@
         </div>
     <section>
         <div class="container pt-5">
-            <h1 class="my-3 ">User's Posts</h1>
+            <h1 id="postsTitle" class="my-3 ">User's Posts</h1>
         </div>
         <div class="container d-flex justify-content-center mt-5 shadow" style="min-height:100vh">
             <div id="posts">
@@ -108,16 +109,23 @@
             </div>
         </div>
     </div>
-
+    <!-- loader -->
+    <div id="loader" class="position-fixed d-flex justify-content-center align-items-center bg-secondary text-light bg-opacity-75 rounded-circle" style="width: 100px; height: 100px; z-index: 1000; margin: auto; top: 0; bottom: 0; left: 0; right: 0;">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div>
+        </div>
+    </div>
 
     <!-- alert -->
     <div class="alert custom-alert fade show position-fixed top-0 end-0 z-3 " role="alert" id="liveAlertPlaceholder">
     </div>
 
+    <!-- create post -->
+    <div class="create-post d-none" id="create-post" onclick="AddPostBtn()"><i
+        class="fa-solid fa-circle-plus"></i></div>
 
-    
+
     <script src="js/private.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/profile.js"></script>
-
 </body>
 </html>

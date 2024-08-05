@@ -21,7 +21,7 @@ function getAllPosts(page = 1) {
             <div  class="mt-4 pb-2" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
-                            <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
+                            <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4 text-light"
                                     src="${
                                       post.author.profile_image
                                     }" width="40px" height="40px"
@@ -71,7 +71,34 @@ function getAllPosts(page = 1) {
     })
     .catch((error) => console.log(error.message));
 }
-
+function getUsersData() {
+  toggleLoader(true);
+  let userId = JSON.parse(localStorage.getItem("user-data")) || "ok";
+  const idOfUser = userId.id;
+  axios({
+    method: "get",
+    url: `${baseUrl}/users/${idOfUser}`,
+    headers: {
+      Accept: "application/json",
+    },
+    redirect: "follow",
+  })
+    .then((response) => {
+      userId = response.data.data;
+      document.getElementById("username").innerHTML = userId.username;
+      document.getElementById("email").innerHTML = userId.email;
+      document.getElementById("name").innerHTML = userId.name;
+      document.getElementById("comments").innerHTML = userId.comments_count;
+      document.getElementById("postsNum").innerHTML = userId.posts_count;
+      document.getElementById("profileImg").src = userId.profile_image;
+      document.getElementById("postsTitle").innerHTML = userId.name + " Posts";
+      getAllPostsForSingleUser(userId.id);
+      toggleLoader(false);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 function Login() {
   const form = new FormData();
   form.append("username", document.getElementById("login-name").value);
@@ -332,3 +359,76 @@ function toggleLoader(isshow = false) {
     document.getElementById("loader").style.visibility = "hidden";
   }
 }
+
+function getAllPostsForSingleUser(id) {
+  axios({
+    method: "get",
+    url: `${baseUrl}/users/${id}/posts`,
+    headers: {
+      Accept: "application/json",
+    },
+    redirect: "follow",
+  })
+    .then((response) => {
+      let posts = response.data.data;
+      // lastPage = response.data.meta.last_page;
+      let userId = JSON.parse(localStorage.getItem("user-data")) || "ok";
+      posts.map(function (post) {
+        let postBox = `
+            <div  class="mt-4 pb-2" id="post">
+                    <div class="card border border-1 shadow" style="width:55rem;">
+                        <div class="card-header">
+                            <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
+                                    src="${
+                                      post.author.profile_image
+                                    }" width="40px" height="40px"
+                                    alt="profile image">${post.author.username}
+                            </button>
+                        </div>
+                        <img class="p-2 w-100" src="${post.image}"
+                            alt="Post image">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger time">${
+                          post.created_at
+                        }
+                        </span>
+                        <div role="button" class="card-body cursor-pointer" onclick="sendPostData(${
+                          post.id
+                        })">
+                            <h5 class="card-title">${post.title}</h5>
+                            <p class="card-text">
+                                ${post.body}
+                            </p>
+                        </div>
+                        <div role="button" class="card-header cursor-pointer py-3 mb-0 px-2 d-flex justify-content-between">
+                            <button type="button" class="btn card-title pb-0 mb-0">
+                                <i class="fa-regular fa-comment "></i>
+                                <span>(${post.comments_count})</span>
+                                Comments
+                                <span id="postTags" class=" rounded-5 text-center px-2 text-light mx-2"> </span>
+                            </button>                      
+                            <div>
+                              <i  onclick="updatePost('${encodeURIComponent(
+                                JSON.stringify(post)
+                              )}')"
+ id="editPostBtn" data-bs-toggle="modal" data-bs-target="#update" class="fa-regular fa-edit mx-2  p-2 h4 cursor-pointer text-primary" role="button"></i>
+ <i  onclick="deletePost('${encodeURIComponent(JSON.stringify(post.id))}')"
+ id="deletePostBtn" class="fa-regular fa-trash-can mx-2 ms-auto p-2 h4 cursor-pointer text-primary" role="button"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+        document.getElementById("posts").innerHTML += postBox;
+      });
+    })
+    .catch((error) => console.log(error.message));
+}
+document.getElementById("dark-mode").addEventListener("click", function () {
+  document.body.classList.toggle("dark-mode");
+  document.getElementById("mainContainer").classList.toggle("dark-mode");
+  const items = document.querySelectorAll(".card"); // select all elements with class "item"
+
+  items.forEach((item) => {
+    item.classList.toggle("dark-mode"); // toggle the "active" class on each item
+  });
+});
