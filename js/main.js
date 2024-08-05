@@ -72,34 +72,7 @@ function getAllPosts(page = 1) {
     })
     .catch((error) => console.log(error.message));
 }
-function getUsersData() {
-  toggleLoader(true);
-  let userId = JSON.parse(localStorage.getItem("user-data")) || "ok";
-  const idOfUser = userId.id;
-  axios({
-    method: "get",
-    url: `${baseUrl}/users/${idOfUser}`,
-    headers: {
-      Accept: "application/json",
-    },
-    redirect: "follow",
-  })
-    .then((response) => {
-      userId = response.data.data;
-      document.getElementById("username").innerHTML = userId.username;
-      document.getElementById("email").innerHTML = userId.email;
-      document.getElementById("name").innerHTML = userId.name;
-      document.getElementById("comments").innerHTML = userId.comments_count;
-      document.getElementById("postsNum").innerHTML = userId.posts_count;
-      document.getElementById("profileImg").src = userId.profile_image;
-      document.getElementById("postsTitle").innerHTML = userId.name + " Posts";
-      getAllPostsForSingleUser(userId.id);
-      toggleLoader(false);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
+
 function Login() {
   const form = new FormData();
   form.append("username", document.getElementById("login-name").value);
@@ -173,7 +146,7 @@ function setUiAfterLogin() {
   const name = userData.name.split(" ")[0];
   myList.innerHTML += `
                     <li class="py-2">
-                        <a class="vlink rounded" href="#">
+                        <a class="vlink rounded" href="profile.html">
                           <img class=" rounded-circle border border-1 w-50" src="${
                             userData.profile_image
                           }" ></img>
@@ -326,10 +299,8 @@ function AddPostBtn() {
   document.getElementById("postTitle").value = "";
   document.getElementById("postBody").value = "";
   document.getElementById("postImage").files[0] = "";
-  let postModal = new bootstrap.Modal(
-    document.getElementById("create-post-modal")
-  );
-  postModal.toggle();
+  new bootstrap.Modal(document.getElementById("create-post-modal")).toggle();
+  // postModal.toggle();
 }
 function deletePost(id) {
   const ask = confirm("Are you sure you want to delete this post?");
@@ -360,8 +331,36 @@ function toggleLoader(isshow = false) {
     document.getElementById("loader").style.visibility = "hidden";
   }
 }
-
+function getUsersData() {
+  toggleLoader(true);
+  let userId = JSON.parse(localStorage.getItem("user-data")) || "ok";
+  const idOfUser = userId.id;
+  axios({
+    method: "get",
+    url: `${baseUrl}/users/${idOfUser}`,
+    headers: {
+      Accept: "application/json",
+    },
+    redirect: "follow",
+  })
+    .then((response) => {
+      userId = response.data.data;
+      document.getElementById("username").innerHTML = userId.username;
+      document.getElementById("email").innerHTML = userId.email;
+      document.getElementById("name").innerHTML = userId.name;
+      document.getElementById("comments").innerHTML = userId.comments_count;
+      document.getElementById("postsNum").innerHTML = userId.posts_count;
+      document.getElementById("profileImg").src = userId.profile_image;
+      document.getElementById("postsTitle").innerHTML = userId.name + " Posts";
+      getAllPostsForSingleUser(userId.id);
+      toggleLoader(false);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 function getAllPostsForSingleUser(id) {
+  toggleLoader(true);
   axios({
     method: "get",
     url: `${baseUrl}/users/${id}/posts`,
@@ -419,7 +418,8 @@ function getAllPostsForSingleUser(id) {
                     </div>
                 </div>
                 `;
-        document.getElementById("posts").innerHTML += postBox;
+        document.getElementById("profilePosts").innerHTML += postBox;
+        toggleLoader(false);
       });
     })
     .catch((error) => console.log(error.message));
@@ -435,4 +435,3 @@ function toggleDarkMode() {
     });
   });
 }
-

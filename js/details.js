@@ -39,17 +39,13 @@ function fillNewPage(id) {
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
                             <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
-                                    src="${
-                                      post.author.profile_image
-                                    }" width="40px" height="40px"
+                                    src="${post.author.profile_image}" width="40px" height="40px"
                                     alt="profile image">${post.author.username}
                             </button>
                         </div>
                         <img class="p-2 w-100" src="${post.image}"
                             alt="Post image">
-                        <span  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger time">${
-                          post.created_at
-                        }
+                        <span  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger time">${post.created_at}
                         </span>
                         <div class="card-body">
                             <h5 class="card-title">${post.title}</h5>
@@ -64,18 +60,13 @@ function fillNewPage(id) {
                                 Comments
                                 <span id="postTags" class=" rounded-5 text-center px-2 text-light mx-2"> </span>
                             </button>                      
-                            <i onclick="updatePost('${encodeURIComponent(
-                              JSON.stringify(post)
-                            )}')" id="editPostBtn" data-bs-toggle="modal" data-bs-target="#update" class="fa-regular fa-edit ms-auto p-2 h4 cursor-pointer text-primary" role="button"></i>
                         </div>
                         <div class="card-footer" id="commentsPlace">
                             ${comments}
                         </div>
                         <div id="commentSection" class="bg-light p-3  d-flex">
                         <input type="text" class="form-control d-inline" id="comment" placeholder="Add a comment">
-                        <button onclick="addComment(${
-                          post.id
-                        })" class="btn btn-primary p-2 d-inline"  id="addComment">Send comment </button>
+                        <button onclick="addComment(${post.id})" class="btn btn-primary p-2 d-inline"  id="addComment">Send comment </button>
                         </div>    
                     </div>
                 </div>

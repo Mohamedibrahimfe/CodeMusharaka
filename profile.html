@@ -20,6 +20,10 @@
                     <li>
                         <a class="vlink rounded border-0" href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
+                    <li id="toggleProfile" style="display: none;" class="d-none d-none">
+                        <a class="vlink rounded" href="profile.html"><i
+                                class="fa-regular fa-circle-user"></i><span>Profile</span></a>
+                    </li>
                     <li id="login-form">
                         <a class="vlink rounded" data-bs-toggle="modal" data-bs-target="#Login" href="#"><i
                                 class="fa-solid  fa-right-to-bracket"></i>
@@ -61,7 +65,7 @@
             <h1 id="postsTitle" class="my-3 ">User's Posts</h1>
         </div>
         <div class="container d-flex justify-content-center mt-5 shadow" style="min-height:100vh">
-            <div id="posts">
+            <div id="profilePosts">
             </div>
         </div>
     </section>
@@ -193,7 +197,7 @@
         <i class="toggler fa-solid fa-moon"></i>
     </a>
 
-
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/private.js"></script>
     <script src="js/main.js"></script>
     <script src="js/profile.js"></script>
