@@ -98,6 +98,8 @@ body{
 #dark-mode-icon{
   background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
 }
+
+
 a.vlink {
     color : #080808;
     position:relative;
@@ -115,9 +117,6 @@ a.vlink span {
     transition : transform 400ms ease-out;
     margin-left:24px;
     box-shadow : 2px 4px 3px 1px rgba(0,0,0,0.2);
-}
-a.vlink:nth-of-type(odd){
-  
 }
 .card img{
     max-height: 50rem;
@@ -340,4 +339,101 @@ body.minimal-mode {
   color: #333333;
   background: linear-gradient(to left, #ffffff75, #ffffffc2);
 
+}
+
+
+@media (max-width: 768px) {
+  #mainContainer{
+    margin-top: 20px;
+  }
+  #NaVBar{
+    display: flex!important;
+    flex-direction: row!important;
+    position: relative!important;
+    top: 0px!important;
+    left: 0!important;
+    /* width: 100%!important; */
+    height: fit-content!important;
+    border-radius: 0!important;
+  }
+  .myHeader{
+    display: none!important;
+  }
+  #mainNav{
+    width: 100%!important;
+    display: flex;
+    justify-content: center;
+  }
+  #Nav{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  ul#list{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: fit-content;
+    justify-content: center !important;
+    height: 54px !important;
+  }
+  ul img, svg{
+    /* vertical-align:top !important; */
+  }
+  ul li a{
+    font-size: 17px!important;
+  }
+  ul li a img{
+    width: 35px!important;
+    height: 35px!important;
+  }
+  a.vlink span{
+    box-shadow: none!important;
+  }
+  .navImG{
+    padding-top: 0!important;
+  }
+  /* fixed */
+  .create-post{
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.5;
+  }
+  #dark-mode{
+    bottom: 10px;
+    left: 10px;
+    opacity: 0.5;
+  }
+  #minimal-mode{
+    bottom: 60px;
+    left: 10px;
+    opacity: 0.5;
+  }
+
+
+
+  /* card */
+  .card{
+    width: 300px!important;
+    border-radius: 6px;
+  }
+  #postImg{
+    max-width: 20rem;
+    max-height: 30rem;
+  }
+  .modal {
+    /* width: 416px!important; */
+    border-radius: 6px;
+  }
+  .col-form-label{
+    font-size: 14px!important;
+    color: #000;
+  }
+  .modal-title{
+    font-size: 20px!important;
+    color: #000;
+  }
+  div#Register{
+    padding-right: 35px!important;
+  }
 }

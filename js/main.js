@@ -146,7 +146,7 @@ function setUiAfterLogin() {
   const userData = JSON.parse(localStorage.getItem("user-data"));
   const name = userData.name.split(" ")[0];
   myList.innerHTML += `
-                    <li class="py-2">
+                    <li class="py-2 navImG">
                         <a class="vlink rounded" href="profile.html">
                           <img class=" rounded-circle border border-1 w-50" src="${
                             userData.profile_image
