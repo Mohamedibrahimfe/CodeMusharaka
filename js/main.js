@@ -453,8 +453,66 @@ function toggleDarkMode(isDark = false) {
     });
   }
 }
-document.getElementById("dark-mode");
-// .addEventListener("click", toggleDarkMode());
+// Function to toggle dark mode
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle('dark-mode');
+
+  // Check if dark mode is enabled and store the setting
+  if (body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'enabled');
+  } else {
+    localStorage.setItem('darkMode', 'disabled');
+  }
+}
+
+// Function to toggle minimal mode
+function toggleMinimalMode() {
+  const body = document.body;
+  body.classList.toggle('minimal-mode');
+  document.getElementById('mainContainer').classList.toggle('minimal-mode');
+  if (body.classList.contains('minimal-mode')) {
+    localStorage.setItem('minimalMode', 'enabled');
+  } else {
+    localStorage.setItem('minimalMode', 'disabled');
+  }
+}
+function applyDarkModeSetting() {
+  const darkModeSetting = localStorage.getItem('darkMode');
+  if (darkModeSetting === 'enabled') {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
+}
+
+// Function to apply the minimal mode setting on page load
+function applyMinimalModeSetting() {
+  const minimalModeSetting = localStorage.getItem('minimalMode');
+  if (minimalModeSetting === 'enabled') {
+    document.body.classList.add('minimal-mode');
+  } else {
+    document.body.classList.remove('minimal-mode');
+  }
+}
+
+// Apply the settings on page load
+document.addEventListener('DOMContentLoaded', (event) => {
+  applyDarkModeSetting();
+  applyMinimalModeSetting();
+
+  // Add event listeners to the buttons
+  const darkModeButton = document.getElementById('dark-mode');
+  if (darkModeButton) {
+    darkModeButton.addEventListener('click', toggleDarkMode);
+  }
+
+  const minimalModeButton = document.getElementById('minimal-mode');
+  if (minimalModeButton) {
+    minimalModeButton.addEventListener('click', toggleMinimalMode);
+  }
+});
+
 
 function zoomImg(img) {
   let postModal = new bootstrap.Modal(document.getElementById("zoomImage"));
