@@ -16,7 +16,7 @@
     <div class="vh-100 d-flex align-items-center position-fixed start-0 top-0 z-3" role="navigation">
         <div class="p-2">
             <div id="mainNav">
-                <ul id="list" class="list-unstyled rounded ms-2">
+                <ul id="list" class="list-unstyled rounded ms-2 NV">
                     <li>
                         <a class="vlink rounded border-0" href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
                     </li>
@@ -43,12 +43,12 @@
         </div>
     </div>
     <div class="container">
-        <h1 class="text-center my-3 mb-5">Nexus</h1>
+        <h1 class="text-center my-3 mt-0 p-4 mb-5">Nexus</h1>
     </div>
     <section>
-        <div class="container d-flex justify-content-center" style="height:30vh;min-width: 50rem;">
-            <div id="mainInfo" class="d-flex justify-content-between gap-5 align-items-center shadow p-3" style="min-width: 50rem;">
-                <img id="profileImg" src="" class="rounded-circle" width="150px" height="150px" alt="">
+        <div class="container d-flex justify-content-center p-5 pt-0" style="height:30vh;min-width: 50rem;">
+            <div id="mainInfo" class="d-flex justify-content-between gap-5 align-items-center  border-5  p-5 " style="min-width: 60rem; min-height: 18rem">
+                <img id="profileImg" src="" class="rounded-circle " width="150px" height="150px" alt="">
                 <div class="d-flex flex-column gap-3 ">
                     <h1 class="text-left h6">User name: <span id="username" class="h4"></span></h1>
                     <h1 class="text-left center h6">Email: <span id="email" class="h4"></span></h1>
@@ -57,14 +57,14 @@
                 <div class="d-flex flex-column gap-3 ">
                     <h1 class="text-center text-secondary"><span id="postsNum" class="h4 big-text"></span> <span  class="h4"> posts</span></h1>
                     <h1 class="text-center text-secondary"><span id="comments" class="h4 big-text"></span> <span id="comments" class="h4"> comments</span></h1>
-                </div>
+                </div>  
             </div>
         </div>
     <section>
         <div class="container pt-5">
-            <h1 id="postsTitle" class="my-3 ">User's Posts</h1>
+            <h1 id="postsTitle" class="my-3 rounded text-center">User's Posts</h1>
         </div>
-        <div class="container d-flex justify-content-center mt-5 shadow" style="min-height:100vh">
+        <div class="container d-flex justify-content-center mt-5 " style="min-height:100vh">
             <div id="profilePosts">
             </div>
         </div>
@@ -194,7 +194,7 @@
 
     <!-- dark-light-mode -->
     <a id="dark-mode">
-        <i class="toggler fa-solid fa-moon"></i>
+        <i id="dark-mode-icon" class="toggler fa-solid fa-moon"></i>
     </a>
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

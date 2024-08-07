@@ -14,7 +14,7 @@ function fillNewPage(id) {
     .then((response) => {
       let post = response.data.data;
       const aouthor = post.author.name;
-      const title = `<h1 class="py-5">${aouthor} Post</h1>`;
+      const title = `<h1 class="p-4 card border-0 shadow">${aouthor} Post</h1>`;
       const comments = post.comments.map((comment) => {
         let timeF = comment.author.created_at.slice(0, 10);
         let timeS = " " + comment.author.created_at.slice(11, 19);
@@ -53,7 +53,7 @@ function fillNewPage(id) {
                                 ${post.body}
                             </p>
                         </div>
-                        <div class="card-header py-3 mb-0 px-2 d-flex">
+                        <div class="card-header blur py-3 mb-0 px-2 d-flex">
                             <button type="button" class="btn card-title pb-0 mb-0">
                                 <i class="fa-regular fa-comment "></i>
                                 <span>(${post.comments_count})</span>
@@ -66,7 +66,7 @@ function fillNewPage(id) {
                         </div>
                         <div id="commentSection" class="bg-light p-3  d-flex">
                         <input type="text" class="form-control d-inline" id="comment" placeholder="Add a comment">
-                        <button onclick="addComment(${post.id})" class="btn btn-primary p-2 d-inline"  id="addComment">Send comment </button>
+                        <button onclick="addComment(${post.id})" class="btn btn-primary"  id="addComment">Send comment </button>
                         </div>    
                     </div>
                 </div>

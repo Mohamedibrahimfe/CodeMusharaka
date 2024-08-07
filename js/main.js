@@ -1,7 +1,6 @@
 let currentPage = 1;
 let lastPage = 1;
 getAllPosts();
-toggleDarkMode();
 function getAllPosts(page = 1) {
   toggleLoader(true);
   axios({
@@ -31,7 +30,7 @@ function getAllPosts(page = 1) {
                         </div>
                         <img class="p-2 w-100" src="${post.image}"
                             alt="Post image">
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger time">${
+                        <span class="position-absolute top-0 start-100 px-2 py-1 translate-middle badge rounded-pill bg-danger time">${
                           post.created_at
                         }
                         </span>
@@ -43,7 +42,7 @@ function getAllPosts(page = 1) {
                                 ${post.body}
                             </p>
                         </div>
-                        <div role="button" class="card-header cursor-pointer py-3 mb-0 px-2 d-flex justify-content-between">
+                        <div role="button" class="card-header  cursor-pointer py-3 mb-0 px-2 d-flex justify-content-between">
                             <button type="button" class="btn card-title pb-0 mb-0">
                                 <i class="fa-regular fa-comment "></i>
                                 <span>(${post.comments_count})</span>
@@ -353,7 +352,7 @@ function getUsersData() {
       document.getElementById("comments").innerHTML = userId.comments_count;
       document.getElementById("postsNum").innerHTML = userId.posts_count;
       document.getElementById("profileImg").src = userId.profile_image;
-      document.getElementById("postsTitle").innerHTML = userId.name + " Posts";
+      document.getElementById("postsTitle").innerHTML = userId.name.toUpperCase() + " Posts";
       toggleLoader(false);
       getAllPostsForSingleUser(userId.id);
     })
@@ -426,14 +425,29 @@ function getAllPostsForSingleUser(id) {
     })
     .catch((error) => console.log(error.message));
 }
-function toggleDarkMode() {
-  document.getElementById("dark-mode").addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-    document.getElementById("mainContainer").classList.toggle("dark-mode");
+function toggleDarkMode(isDark = false) {
+  if (localStorage.getItem("darkMode") === "true") {
+    localStorage.removeItem("darkMode");
+    document.getElementById("dark-mode-icon").classList.add("fa-sun");
+    document.getElementById("dark-mode-icon").classList.remove("fa-moon");
+    document.body.classList.add("dark-mode");
+    document.getElementById("mainContainer").classList.add("dark-mode");
     const items = document.querySelectorAll(".card");
-
     items.forEach((item) => {
-      item.classList.toggle("dark-mode");
+      item.classList.add("dark-mode");
     });
-  });
+  } else {
+    localStorage.setItem("darkMode", "true");
+    document.getElementById("dark-mode-icon").classList.add("fa-moon");
+    document.getElementById("dark-mode-icon").classList.remove("fa-sun");
+    document.body.classList.remove("dark-mode");
+    document.getElementById("mainContainer").classList.remove("dark-mode");
+    const items = document.querySelectorAll(".card");
+    items.forEach((item) => {
+      item.classList.remove("dark-mode");
+    });
+  }
 }
+document
+  .getElementById("dark-mode")
+  // .addEventListener("click", toggleDarkMode());

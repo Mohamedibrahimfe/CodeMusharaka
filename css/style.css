@@ -1,5 +1,109 @@
+body{
+  /* background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12); */
+  /* background-image: linear-gradient(to top, #fbc2eb 80%, #a6c1ee 100%); */
+  /* background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); */
+  background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+  /* background-color:#fdf7ff  ; */
+  /* background: linear-gradient(to right, #8d2de275, #4b00e0c2); */
+  /* background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);} */
+}
+.container{
+  /* background-color:#cdcdcd1f; */
+  /* background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); */
+  /* background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); */
+  /* background-image: linear-gradient(to top, #fdcbf1 0%, #ff8ce4 1%, #e6dee9 100%); */
+  /* background-color:#e0e0e0  ; */
+  /* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+  /* background-image: linear-gradient(to bottom, #a3bded 4%, #88b8f72d 40%); */
+  /* background-image: linear-gradient(to top, #dfe9f3 0%, white 100%); */
+  /* background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%); */
+  /* background-color: #9b89b3; */
+  /* background: linear-gradient(to right, #2dcae24b, #0f00e045); */
+  /* background: linear-gradient(to right, #2dcae24b, #0f00e045); */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+.card{
+  /* background-color: #9b89b3; */
+  /* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */
+  /* background-color: #00aaff; */
+  /* background-image: linear-gradient(to top, #994886b9 0%, #fce6f7 25%, #c84df5 100%); */
+  /* background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%); */
+  /* background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%); */
+  /* background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%); */
+  /* background-image: linear-gradient(to bottom, #a3bded 0%, #88b8f761 100%); */
+  background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+  /* background: linear-gradient(to right, #2dcae24b, #0f00e045); */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  border:20px solid black;
+
+}
+
+#mainInfo{
+  border-width: 3px;
+  border-style: solid;
+  border-image: 
+    linear-gradient(
+      to bottom, 
+      red, 
+      rgba(0, 0, 0, 0)
+    ) 1 100%;
+}
+#postsTitle{
+  background-image: linear-gradient(-225deg, rgb(255, 220, 255) 0%, #D7FFFE 100%);
+  width: 50%;
+  margin: auto;
+  padding: 10px;
+  border-width: 3px;
+  border-style: solid;
+  border-image: 
+    linear-gradient(
+      to bottom, 
+      red, 
+      rgba(190, 190, 190, 0)
+    ) 1 70%;
+}
+#commentSection{
+  /* background: linear-gradient(to left, #2dcae22b, #0f00e028); */
+  /* filter: opacity(1.5); */
+  /* background-color: #ffffff; */
+  border-width: 3px;
+  border-style: solid;
+  border-image: 
+    linear-gradient(
+      to bottom, 
+      red, 
+      rgba(0, 0, 0, 0)
+    ) 1 100%;
+}
+.NV{
+  /* background-image: linear-gradient(to top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); */
+  /* background-image: linear-gradient(to right top, #0519376f, #004d7a77, #0087937e, #00bf7387, #a6eb1266); */
+  /* background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); */
+  /* background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%); */
+  /* background-image: linear-gradient(120deg, #a3bded 80%, #88b8f761 100%); */
+  /* background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%); */
+  /* background-image: linear-gradient(-225deg, rgb(255, 220, 255) 0%, #D7FFFE 100%); */
+  background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
+
+}
+#comment{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#addComment{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.blur{
+  border: 1px solid rgba(6, 6, 253, 0.165);
+  filter: opacity(1.5);
+
+}
+#dark-mode-icon{
+  background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
+}
 a.vlink {
-    color : #efefef;
+    color : #080808;
     position:relative;
     height:54px;
     width:72px;
@@ -38,13 +142,17 @@ a.vlink {
     background : #000 !important;
   }
   a.vlink:hover {
-    box-shadow : 1px 2px 3px #9d451d;
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2825b+0,e55b2b+50,f07146+100;Red+3D+%232 */
-    background: rgb(242,130,91); /* Old browsers */
-    background: -moz-linear-gradient(left,  rgba(242,130,91,1) 0%, rgba(229,91,43,1) 50%, rgba(240,113,70,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(left,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right,  rgba(242,130,91,1) 0%,rgba(229,91,43,1) 50%,rgba(240,113,70,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2825b', endColorstr='#f07146',GradientType=1 ); /* IE6-9 */
+    color : #fff !important;
+    /* Darker blue color palette */
+box-shadow: 1px 2px 3px #3b5998;
+
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0052d4+0,4364f7+50,6fb1fc+100;Blue+3D+%232 */
+background: rgb(0,82,212); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(0,82,212,1) 0%, rgba(67,100,247,1) 50%, rgba(111,177,252,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(0,82,212,1) 0%,rgba(67,100,247,1) 50%,rgba(111,177,252,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(0,82,212,1) 0%,rgba(67,100,247,1) 50%,rgba(111,177,252,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0052d4', endColorstr='#6fb1fc',GradientType=1 ); /* IE6-9 */
+
   }
   
   a.vlink:hover span {
@@ -78,19 +186,19 @@ a.vlink {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #01f241;
+    background: #02d5ff;
     color: #fff;
     font-size: 30px;
     transition: 0.3s;
     z-index: 999;
     outline:none;
-    box-shadow: 0 0 5px rgba(123, 255, 176, 0.832);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.832);
   }
   .create-post:hover{
     width: 80px;
     height: 80px;
     font-size: 40px;
-    box-shadow: 0 0 10px rgba(123, 255, 176, 0.832);
+    box-shadow: 0 0 10px rgba(4, 4, 4, 0.832);
   }
   .create-post i{
     position: absolute;
@@ -168,8 +276,8 @@ i.hidden{
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background: rgb(0, 0, 0);
-  color: #ffffff;
+  background-image: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);  color: #ffffff;
+  color: #000;
   font-size: 26px;
   transition: 0.3s;
   z-index: 999;
@@ -198,4 +306,8 @@ body.dark-mode{
   background-color: #1212124f;
   color: #fff;
   transition: 0.3s;
-} 
+}
+.card-header.dark-mode{
+  color: #fff;
+  transition: 0.3s;
+}
