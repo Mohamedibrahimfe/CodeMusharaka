@@ -18,7 +18,7 @@ function getAllPosts(page = 1) {
       let userId = JSON.parse(localStorage.getItem("user-data")) || "ok";
       posts.map(function (post) {
         let postBox = `
-            <div  class="mt-4 pb-2" id="post">
+            <div  class="mb-5 pb-0" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
                             <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
@@ -28,7 +28,9 @@ function getAllPosts(page = 1) {
                                     alt="profile image">${post.author.username}
                             </button>
                         </div>
-                        <img class="p-2 w-100" src="${post.image}"
+                        <img onClick="zoomImg(this)" id="postImg" role="button" class="p-2 w-100 cursor-pointer" src="${
+                          post.image
+                        }"
                             alt="Post image">
                         <span class="position-absolute top-0 start-100 px-2 py-1 translate-middle badge rounded-pill bg-danger time">${
                           post.created_at
@@ -59,7 +61,7 @@ function getAllPosts(page = 1) {
  <i  onclick="deletePost('${encodeURIComponent(JSON.stringify(post.id))}')"
  id="deletePostBtn" class=" ${
    userId.id == post.author.id ? "" : "hidden"
- } fa-regular fa-trash-can mx-2 ms-auto p-2 h4 cursor-pointer text-primary" role="button"></i>
+ } fa-regular fa-trash-can mx-2 ms-auto p-2 h4 cursor-pointer  text-danger" role="button"></i>
                             </div>
                         </div>
                     </div>
@@ -352,7 +354,8 @@ function getUsersData() {
       document.getElementById("comments").innerHTML = userId.comments_count;
       document.getElementById("postsNum").innerHTML = userId.posts_count;
       document.getElementById("profileImg").src = userId.profile_image;
-      document.getElementById("postsTitle").innerHTML = userId.name.toUpperCase() + " Posts";
+      document.getElementById("postsTitle").innerHTML =
+        userId.name.toUpperCase() + " Posts";
       toggleLoader(false);
       getAllPostsForSingleUser(userId.id);
     })
@@ -376,7 +379,7 @@ function getAllPostsForSingleUser(id) {
       let userId = JSON.parse(localStorage.getItem("user-data")) || "ok";
       posts.map(function (post) {
         let postBox = `
-            <div  class="mt-4 pb-2" id="post">
+            <div  class="mt-2 mb-5 pb-2" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
                             <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
@@ -386,7 +389,9 @@ function getAllPostsForSingleUser(id) {
                                     alt="profile image">${post.author.username}
                             </button>
                         </div>
-                        <img class="p-2 w-100" src="${post.image}"
+                        <img onClick="zoomImg(this)" role="button" class="p-2 w-100 cursor-pointer " src="${
+                          post.image
+                        }"
                             alt="Post image">
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger time">${
                           post.created_at
@@ -448,6 +453,13 @@ function toggleDarkMode(isDark = false) {
     });
   }
 }
-document
-  .getElementById("dark-mode")
-  // .addEventListener("click", toggleDarkMode());
+document.getElementById("dark-mode");
+// .addEventListener("click", toggleDarkMode());
+
+function zoomImg(img) {
+  let postModal = new bootstrap.Modal(document.getElementById("zoomImage"));
+  postModal.toggle();
+  console.log(img);
+  console.log(document.getElementById("zoom-image"));
+  document.getElementById("zoom-image").src = img.src;
+}

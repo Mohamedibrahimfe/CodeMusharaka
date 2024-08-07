@@ -43,7 +43,7 @@ function fillNewPage(id) {
                                     alt="profile image">${post.author.username}
                             </button>
                         </div>
-                        <img class="p-2 w-100" src="${post.image}"
+                        <img onClick="zoomImg(this)" role="button" class="p-2 w-100 cursor-pointer" src="${post.image}"
                             alt="Post image">
                         <span  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger time">${post.created_at}
                         </span>
