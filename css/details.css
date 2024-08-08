@@ -1,0 +1,32 @@
+
+
+
+@media (max-width: 768px) {
+    #detaildPosts{
+        position: relative;
+    }
+    #NaVBar{
+        position: relative!important;
+        display: flex!important;
+        flex-direction: row!important;
+        height:  fit-content!important;
+        justify-content: center;
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: black;
+        display: none!important;
+    }
+    ul#list{
+        display: flex!important;
+        /* justify-content: center; */
+        padding: 0;
+        margin: 0;
+    }
+
+    #post{
+        width: 20rem!important;
+    }
+    .card-img{
+        max-width: 20rem!important;
+    }
+}

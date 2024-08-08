@@ -21,7 +21,7 @@ function getAllPosts(page = 1) {
             <div  class="mb-5 pb-0" id="post">
                     <div class="card border border-1 shadow" style="width:55rem;">
                         <div class="card-header">
-                            <button class=" pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
+                            <button class="info pe-auto border-0 btn px-0"><img class="rounded-circle border border-4"
                                     src="${
                                       post.author.profile_image
                                     }" width="40px" height="40px"
@@ -44,7 +44,7 @@ function getAllPosts(page = 1) {
                                 ${post.body}
                             </p>
                         </div>
-                        <div role="button" class="card-header  cursor-pointer py-3 mb-0 px-2 d-flex justify-content-between">
+                        <div role="button" class="  cursor-pointer py-3 mb-0 px-2 card-header d-flex justify-content-between">
                             <button type="button" class="btn card-title pb-0 mb-0">
                                 <i class="fa-regular fa-comment "></i>
                                 <span>(${post.comments_count})</span>
