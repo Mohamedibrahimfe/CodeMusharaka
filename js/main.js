@@ -141,7 +141,9 @@ function showSuccessMessage(MyMessage, MyType) {
 function setUiAfterLogin() {
   document.getElementById("login-form").style.display = "none";
   document.getElementById("Register-form").style.display = "none";
-  document.getElementById("toggleProfile").classList.remove("d-none");
+  if (document.getElementById("toggleProfile") != null) {
+    document.getElementById("toggleProfile").classList.remove("d-none");
+  }
   const myList = document.getElementById("list");
   const userData = JSON.parse(localStorage.getItem("user-data"));
   const name = userData.name.split(" ")[0];
@@ -446,7 +448,11 @@ function toggleDarkMode(isDark = false) {
     document.getElementById("dark-mode-icon").classList.add("fa-moon");
     document.getElementById("dark-mode-icon").classList.remove("fa-sun");
     document.body.classList.remove("dark-mode");
-    document.getElementById("mainContainer").classList.remove("dark-mode");
+    if (
+      document.getElementById("mainContainer").classList.contains("dark-mode")
+    ) {
+      document.getElementById("mainContainer").classList.remove("dark-mode");
+    }
     const items = document.querySelectorAll(".card");
     items.forEach((item) => {
       item.classList.remove("dark-mode");
@@ -456,25 +462,27 @@ function toggleDarkMode(isDark = false) {
 // Function to toggle dark mode
 function toggleDarkMode() {
   const body = document.body;
-  body.classList.toggle('dark-mode');
+  body.classList.toggle("dark-mode");
 
   // Check if dark mode is enabled and store the setting
-  if (body.classList.contains('dark-mode')) {
-    localStorage.setItem('darkMode', 'enabled');
+  if (body.classList.contains("dark-mode")) {
+    localStorage.setItem("darkMode", "enabled");
   } else {
-    localStorage.setItem('darkMode', 'disabled');
+    localStorage.setItem("darkMode", "disabled");
   }
 }
 
 // Function to toggle minimal mode
 function toggleMinimalMode() {
   const body = document.body;
-  body.classList.toggle('minimal-mode');
-  document.getElementById('mainContainer').classList.toggle('minimal-mode');
-  if (body.classList.contains('minimal-mode')) {
-    localStorage.setItem('minimalMode', 'enabled');
+  body.classList.toggle("minimal-mode");
+  if (document.getElementById("mainContainer") != null) {
+    document.getElementById("mainContainer").classList.toggle("minimal-mode");
+  }
+  if (body.classList.contains("minimal-mode")) {
+    localStorage.setItem("minimalMode", "enabled");
   } else {
-    localStorage.setItem('minimalMode', 'disabled');
+    localStorage.setItem("minimalMode", "disabled");
   }
 }
 function applyDarkModeSetting() {

@@ -9,14 +9,13 @@
         <link rel="stylesheet" href="assets/normalize.css" />
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/details.css">
     </head>
 
     <body>
-        <div  class="vh-100 d-flex align-items-center position-fixed start-0 top-0 z-3" id="NaVBar" role="navigation">
+        <div class=" NaVBarInDetails"  role="navigation">
             <div class="p-2" id="Nav">
                 <div id="mainNav">
-                    <ul id="list" class="list-unstyled rounded ms-2 NV">
+                    <ul id="list" class="list-unstyled rounded ms-2 NV MMV d-flex">
                         <li>
                             <a class="vlink rounded border-0" href="index.html"><i class="fas fa-home"></i><span>Home</span></a>
                         </li>
@@ -42,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <div class="container d-flex justify-content-center" style="min-height:100vh">
+        <div class="container detailsContainer d-flex justify-content-center" >
             <div id="detaildPosts">
 
             </div>
@@ -53,7 +52,8 @@
 
     <!-- create post -->
     <div class="create-post d-none" id="create-post" onclick="AddPostBtn()"><i
-        class="fa-solid fa-circle-plus"></i></div>
+        class="fa-solid fa-circle-plus"></i>
+    </div>
 
            <!-- zoom image -->
     <div class="modal fade " id="zoomImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
